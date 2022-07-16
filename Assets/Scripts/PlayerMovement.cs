@@ -7,9 +7,17 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
     // Move player in 2D space
-    public float maxSpeed = 3.4f;
-    public float jumpHeight = 6.5f;
-    public float gravityScale = 1.5f;
+    public float rMaxSpeed;
+    public float rJumpHeight;
+
+    public float tMaxSpeed;
+    public float tJumpHeight;
+
+    public float oMaxSpeed;
+    public float oJumpHeight;
+
+    public float maxSpeed;
+    public float jumpHeight;
 
     bool facingRight = true;
     float moveDirection = 0;
@@ -18,24 +26,23 @@ public class PlayerMovement : MonoBehaviour {
     Rigidbody2D r2d;
     CircleCollider2D mainCollider;
     Transform t;
+    PlayerMechanics pMe;
 
     void Start() {
         t = transform;
         r2d = GetComponent<Rigidbody2D>();
         mainCollider = GetComponent<CircleCollider2D>();
+        pMe = GetComponent<PlayerMechanics>();
         r2d.freezeRotation = true;
         r2d.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
-        r2d.gravityScale = gravityScale;
         facingRight = t.localScale.x > 0;
     }
 
     void Update() {
         // Movement controls
-        if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)) && (isGrounded || Mathf.Abs(r2d.velocity.x) > 0.01f || Mathf.Abs(r2d.velocity.y) > 0.01f))
-            moveDirection = Input.GetKey(KeyCode.A) ? -1 : 1;
-        else
-            if (isGrounded || r2d.velocity.magnitude < 0.01f)
-                moveDirection = 0;
+        if (Input.GetKey(KeyCode.A)) moveDirection = -1;
+        else if (Input.GetKey(KeyCode.D)) moveDirection = 1;
+        else moveDirection = 0;
 
         // Change facing direction
         if (moveDirection != 0) {
@@ -50,8 +57,12 @@ public class PlayerMovement : MonoBehaviour {
         }
 
         // Jumping
-        if (Input.GetKeyDown(KeyCode.W) && isGrounded) {
-            r2d.velocity = new Vector2(r2d.velocity.x, jumpHeight);
+        if (pMe.character == "owl") {
+            if (Input.GetKeyDown(KeyCode.W))
+                r2d.velocity = new Vector2(r2d.velocity.x, jumpHeight);
+        } else {
+            if (Input.GetKeyDown(KeyCode.W) && isGrounded)
+                r2d.velocity = new Vector2(r2d.velocity.x, jumpHeight);
         }
     }
 
@@ -67,7 +78,7 @@ public class PlayerMovement : MonoBehaviour {
         isGrounded = false;
         if (colliders.Length > 0) {
             for (int i = 0; i < colliders.Length; i++){
-                if (colliders[i] != mainCollider) {
+                if (colliders[i].tag == "Ground") {
                     isGrounded = true;
                     break;
                 }
