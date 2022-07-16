@@ -13,6 +13,9 @@ public class PlayerMovement : MonoBehaviour {
     public float turtleJump = 0;
     public float slideTime = 0;
     public float maxSlideTime = 0.41f;
+    public float coolDown;
+    public float coolDownTimer;
+    public bool dashing = false;
     public bool sliding = false;
 
     public float owlSpeed = 6f;
@@ -29,6 +32,8 @@ public class PlayerMovement : MonoBehaviour {
     //Movement
     public float speed;
     public float jump;
+    public float slowDown; // natural slowdown
+    public float slowDown2; // forced slowdown
     public float slopeMultiplier;
     float moveVelocity;
     int facing;
@@ -50,13 +55,29 @@ public class PlayerMovement : MonoBehaviour {
         Special();
 
         //Left Right Movement
-        if (Input.GetKey (KeyCode.LeftArrow) || Input.GetKey (KeyCode.A)) {
-            moveVelocity = -speed;
-            facing = -1;
-        }
-        if (Input.GetKey (KeyCode.RightArrow) || Input.GetKey (KeyCode.D)) {
-            moveVelocity = speed;
-            facing = 1;
+        if (character == "turtle" && (dashing || sliding)) {
+            if (sliding) {
+                if (Input.GetKey (KeyCode.LeftArrow) || Input.GetKey (KeyCode.A)) {
+                    if (facing == 1) slowDown *= slowDown2;
+                    else slowDown = 0;
+                } 
+                if (Input.GetKey (KeyCode.RightArrow) || Input.GetKey (KeyCode.D)) {
+                    if (facing == -1) slowDown *= slowDown2;
+                    else slowDown = 0;
+                }
+                if (Input.GetKeyUp (KeyCode.LeftArrow) || Input.GetKeyUp (KeyCode.A) || 
+                    Input.GetKeyUp (KeyCode.LeftArrow) || Input.GetKeyUp (KeyCode.A))
+                    slowDown = 0.5f;
+            }
+        } else {
+            if (Input.GetKey (KeyCode.LeftArrow) || Input.GetKey (KeyCode.A)) {
+                moveVelocity = -speed;
+                facing = -1;
+            }
+            if (Input.GetKey (KeyCode.RightArrow) || Input.GetKey (KeyCode.D)) {
+                moveVelocity = speed;
+                facing = 1;
+            }
         }
 
         if (onSlope) rb.velocity = new Vector2 (moveVelocity, rb.velocity.y * slopeMultiplier);
@@ -96,10 +117,12 @@ public class PlayerMovement : MonoBehaviour {
             if (isGrounded) {
                 speed = owlSpeed;
                 jump = owlJump;
+                rb.gravityScale = 6;
 
                 rb.velocity = new Vector2 (rb.velocity.x, jump);
-                if (Random.Range(0,2) == 0) flaps = 1;
-                else flaps = 4;
+                // if (Random.Range(0,2) == 0) flaps = 1;
+                // else flaps = 4;
+                flaps = 4;
 
             } else {
                 speed = owlSpeedFlight;
@@ -108,6 +131,8 @@ public class PlayerMovement : MonoBehaviour {
                 if (flaps > 0) {
                     rb.velocity = new Vector2 (rb.velocity.x, jump);
                     flaps--;
+                } else {
+                    rb.gravityScale = 10;
                 }
             }
 
@@ -124,7 +149,7 @@ public class PlayerMovement : MonoBehaviour {
 
             if (Input.GetKeyUp(KeyCode.Space)) {
                 charging = false;
-                sliding = true;
+                dashing = true;
 
                 // 4 ; 0.41 | else 3,10 ; 0.205, 0.67
                 if (chargeTime < minChargeTime) 
@@ -132,27 +157,50 @@ public class PlayerMovement : MonoBehaviour {
                 else maxSlideTime = Random.Range(0.205f, 0.67f);
             }
 
-            if (sliding) {
+            if (dashing) {
                 if (slideTime < maxSlideTime) {
                     speed = turtleSpeedSlide;
                     moveVelocity = speed * facing;
                     slideTime += Time.deltaTime;
                 } else {
-                    sliding = false;
+                    dashing = false;
                     slideTime = 0;
-                    speed = turtleSpeed;
+                    // speed = turtleSpeed;
+                    sliding = true;
+                }
+            }
+
+            if (sliding) {
+                if (speed > 1f) {
+                    speed -= slowDown;
+                    moveVelocity = speed * facing;
+                } else {
+                    if (coolDownTimer < coolDown) {
+                        speed = 0;
+                        coolDownTimer += Time.deltaTime;
+                    } else {
+                        coolDownTimer = 0f;
+                        sliding = false;
+                        speed = turtleSpeed;
+                        slowDown = 0.5f;
+                    }
                 }
             }
         }
     }
 
-    //Check if Grounded
+    // Check if Grounded
     // cannot touch 2 at the same time
     void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.tag == "Ground")
             isGrounded = true;
         if (collision.gameObject.tag == "Slope")
             onSlope = true;
+        if (collision.gameObject.tag == "Wall" &&
+            character == "turtle" && (dashing || sliding)) {
+                facing = -facing;
+                // slowDown = -slowDown;
+            }
     }
 
     void OnCollisionExit2D(Collision2D collision) {

@@ -3,6 +3,8 @@ using System.Collections;
 
 public class Enemy : MonoBehaviour {
     public float speed;
+    public float pause;
+    public float timer = 0f;
     public Vector2 rightEnd;
     public Vector2 leftEnd;
     public bool goingToRight = true;
@@ -11,12 +13,24 @@ public class Enemy : MonoBehaviour {
         if (goingToRight) {
             if (transform.position.x < rightEnd.x)
                 transform.position = Vector2.MoveTowards(transform.position, rightEnd, speed);
-            else goingToRight = false;
+            else {
+                if (timer < pause) timer += Time.deltaTime;
+                else {
+                    timer = 0f;
+                    goingToRight = false;
+                }
+            }
 
         } else {
             if (transform.position.x > leftEnd.x)
                 transform.position = Vector2.MoveTowards(transform.position, leftEnd, speed);
-            else goingToRight = true;
+            else {
+                if (timer < pause) timer += Time.deltaTime;
+                else {
+                    timer = 0f;
+                    goingToRight = true;
+                }
+            }
         }
     }
 }
