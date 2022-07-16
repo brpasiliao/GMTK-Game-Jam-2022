@@ -31,12 +31,3 @@ public class Narration : MonoBehaviour {
         forward = false;
     }
 }
-
-// moving, action button
-
-
-// 3 lives
-// object to lose life
-
-// how to share
-// ui?

@@ -11,17 +11,28 @@ public class PlayerMovement : MonoBehaviour {
     public float rJumpHeight;
 
     public float tMaxSpeed;
+    public float tSlideSpeed;
     public float tJumpHeight;
+    public float minChargeTime;
+    public float chargeTime = 0;
+    public bool charging = false;
+    public float slideTime = 0;
+    // public float minSlideTime;
+    public float maxSlideTime;
+    public bool sliding = false;
 
     public float oMaxSpeed;
+    public float oFlightSpeed;
     public float oJumpHeight;
+    public float oFlightHeight;
+    public int flaps = 4;
 
     public float maxSpeed;
     public float jumpHeight;
 
     bool facingRight = true;
-    float moveDirection = 0;
-    bool isGrounded = false;
+    public float moveDirection = 0;
+    public bool isGrounded = false;
     Vector3 cameraPos;
     Rigidbody2D r2d;
     CircleCollider2D mainCollider;
@@ -40,9 +51,11 @@ public class PlayerMovement : MonoBehaviour {
 
     void Update() {
         // Movement controls
-        if (Input.GetKey(KeyCode.A)) moveDirection = -1;
-        else if (Input.GetKey(KeyCode.D)) moveDirection = 1;
-        else moveDirection = 0;
+        if (!charging) {
+            if (Input.GetKey(KeyCode.A)) moveDirection = -1;
+            else if (Input.GetKey(KeyCode.D)) moveDirection = 1;
+            else moveDirection = 0;
+        }
 
         // Change facing direction
         if (moveDirection != 0) {
@@ -58,12 +71,60 @@ public class PlayerMovement : MonoBehaviour {
 
         // Jumping
         if (pMe.character == "owl") {
-            if (Input.GetKeyDown(KeyCode.W))
-                r2d.velocity = new Vector2(r2d.velocity.x, jumpHeight);
-        } else {
-            if (Input.GetKeyDown(KeyCode.W) && isGrounded)
-                r2d.velocity = new Vector2(r2d.velocity.x, jumpHeight);
+            if (Input.GetKeyDown(KeyCode.Space)) {
+                if (isGrounded) {
+                    maxSpeed = oMaxSpeed;
+                    jumpHeight = oJumpHeight;
+
+                    r2d.velocity = new Vector2(r2d.velocity.x, jumpHeight);
+                    flaps = 4;
+                } else {
+                    maxSpeed = oFlightSpeed;
+                    jumpHeight = oFlightHeight;
+
+                    if (flaps > 0) {
+                        r2d.velocity = new Vector2(r2d.velocity.x, jumpHeight);
+                        flaps--;
+                    }
+                }
+            }
+
+        } else if (pMe.character == "turtle") {
+            if (Input.GetKeyDown(KeyCode.Space)) {
+                chargeTime = 0;
+                moveDirection = 0;
+                charging = true;
+            }
+
+            if (Input.GetKey(KeyCode.Space)) {
+                chargeTime += Time.deltaTime;
+            }
+
+            if (Input.GetKeyUp(KeyCode.Space)) {
+                charging = false;
+
+                if (facingRight) moveDirection = 1;
+                else moveDirection = -1;
+
+                // if (chargeTime < minChargeTime) maxSlideTime = 6
+                // else maxSlideTime = 3, 10
+
+                sliding = true;
+            }
+
+            if (sliding) {
+                if (slideTime < maxSlideTime) {
+                    slideTime += Time.deltaTime;
+                    r2d.velocity = new Vector2((moveDirection) * tSlideSpeed, r2d.velocity.y);
+                } else {
+                    sliding = false;
+                    slideTime = 0;
+                }
+            }
         }
+        // } else {
+        //     if (isGrounded) r2d.velocity = new Vector2(r2d.velocity.x, jumpHeight);
+        // }
     }
 
     void FixedUpdate() {
@@ -75,17 +136,26 @@ public class PlayerMovement : MonoBehaviour {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheckPos, colliderRadius);
         
         //Check if any of the overlapping colliders are not player collider, if so, set isGrounded to true
-        isGrounded = false;
-        if (colliders.Length > 0) {
-            for (int i = 0; i < colliders.Length; i++){
-                if (colliders[i].tag == "Ground") {
-                    isGrounded = true;
-                    break;
-                }
-            }
-        }
+        // isGrounded = false;
+        // if (colliders.Length > 0) {
+        //     for (int i = 0; i < colliders.Length; i++) {
+        //         if (colliders[i].tag == "Ground") {
+        //             isGrounded = true;
+        //             break;
+        //         }
+        //     }
+        // }
 
         // Apply movement velocity
-        r2d.velocity = new Vector2((moveDirection) * maxSpeed, r2d.velocity.y);
+        if (!sliding) r2d.velocity = new Vector2((moveDirection) * maxSpeed, r2d.velocity.y);
     }
-}
+
+    void OnCollisionEnter2D(Collision2D collision) {
+        if (collision.gameObject.tag == "Ground")
+            isGrounded = true;
+    }
+
+    void OnCollisionExit2D(Collision2D collision) {
+        if (collision.gameObject.tag == "Ground")
+            isGrounded = false;
+    }
