@@ -2,11 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(CircleCollider2D))]
-
 public class PlayerMovement : MonoBehaviour {
-    // Move player in 2D space
+    public string character;
+    
     public float rMaxSpeed;
     public float rJumpHeight;
 
@@ -17,7 +15,6 @@ public class PlayerMovement : MonoBehaviour {
     public float chargeTime = 0;
     public bool charging = false;
     public float slideTime = 0;
-    // public float minSlideTime;
     public float maxSlideTime;
     public bool sliding = false;
 
@@ -27,135 +24,244 @@ public class PlayerMovement : MonoBehaviour {
     public float oFlightHeight;
     public int flaps = 4;
 
-    public float maxSpeed;
-    public float jumpHeight;
+    [SerializeField] private float movementSpeed;
+    [SerializeField] private float groundCheckRadius;
+    [SerializeField] private float jumpForce;
+    [SerializeField] private float slopeCheckDistance;
+    [SerializeField] private float maxSlopeAngle;
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] private LayerMask whatIsGround;
+    [SerializeField] private PhysicsMaterial2D noFriction;
+    [SerializeField] private PhysicsMaterial2D fullFriction;
 
-    bool facingRight = true;
-    public float moveDirection = 0;
-    public bool isGrounded = false;
-    Vector3 cameraPos;
-    Rigidbody2D r2d;
-    CircleCollider2D mainCollider;
-    Transform t;
-    PlayerMechanics pMe;
+    private float xInput;
+    private float slopeDownAngle;
+    private float slopeSideAngle;
+    private float lastSlopeAngle;
 
-    void Start() {
-        t = transform;
-        r2d = GetComponent<Rigidbody2D>();
-        mainCollider = GetComponent<CircleCollider2D>();
-        pMe = GetComponent<PlayerMechanics>();
-        r2d.freezeRotation = true;
-        r2d.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
-        facingRight = t.localScale.x > 0;
+    private int facingDirection = 1;
+
+    private bool isGrounded;
+    private bool isOnSlope;
+    private bool isJumping;
+    private bool canWalkOnSlope;
+    private bool canJump;
+
+    private Vector2 newVelocity;
+    private Vector2 newForce;
+    private Vector2 capsuleColliderSize;
+
+    private Vector2 slopeNormalPerp;
+
+    private Rigidbody2D rb;
+    private CapsuleCollider2D cc;
+
+    private void Start() {
+        ChangeCharacter("rabbit");
+
+        rb = GetComponent<Rigidbody2D>();
+        cc = GetComponent<CapsuleCollider2D>();
+
+        capsuleColliderSize = cc.size;
     }
 
-    void Update() {
-        // Movement controls
-        if (!charging) {
-            if (Input.GetKey(KeyCode.A)) moveDirection = -1;
-            else if (Input.GetKey(KeyCode.D)) moveDirection = 1;
-            else moveDirection = 0;
-        }
+    private void Update() {
+        if (Input.GetKeyDown("1")) ChangeCharacter("rabbit");
+        if (Input.GetKeyDown("2")) ChangeCharacter("turtle");
+        if (Input.GetKeyDown("3")) ChangeCharacter("owl");
 
-        // Change facing direction
-        if (moveDirection != 0) {
-            if (moveDirection > 0 && !facingRight) {
-                facingRight = true;
-                t.localScale = new Vector3(Mathf.Abs(t.localScale.x), t.localScale.y, transform.localScale.z);
-            }
-            if (moveDirection < 0 && facingRight){
-                facingRight = false;
-                t.localScale = new Vector3(-Mathf.Abs(t.localScale.x), t.localScale.y, t.localScale.z);
-            }
-        }
-
-        // Jumping
-        if (pMe.character == "owl") {
-            if (Input.GetKeyDown(KeyCode.Space)) {
-                if (isGrounded) {
-                    maxSpeed = oMaxSpeed;
-                    jumpHeight = oJumpHeight;
-
-                    r2d.velocity = new Vector2(r2d.velocity.x, jumpHeight);
-                    flaps = 4;
-                } else {
-                    maxSpeed = oFlightSpeed;
-                    jumpHeight = oFlightHeight;
-
-                    if (flaps > 0) {
-                        r2d.velocity = new Vector2(r2d.velocity.x, jumpHeight);
-                        flaps--;
-                    }
-                }
-            }
-
-        } else if (pMe.character == "turtle") {
-            if (Input.GetKeyDown(KeyCode.Space)) {
-                chargeTime = 0;
-                moveDirection = 0;
-                charging = true;
-            }
-
-            if (Input.GetKey(KeyCode.Space)) {
-                chargeTime += Time.deltaTime;
-            }
-
-            if (Input.GetKeyUp(KeyCode.Space)) {
-                charging = false;
-
-                if (facingRight) moveDirection = 1;
-                else moveDirection = -1;
-
-                // if (chargeTime < minChargeTime) maxSlideTime = 6
-                // else maxSlideTime = 3, 10
-
-                sliding = true;
-            }
-
-            if (sliding) {
-                if (slideTime < maxSlideTime) {
-                    slideTime += Time.deltaTime;
-                    r2d.velocity = new Vector2((moveDirection) * tSlideSpeed, r2d.velocity.y);
-                } else {
-                    sliding = false;
-                    slideTime = 0;
-                }
-            }
-        }
-        // } else {
-        //     if (isGrounded) r2d.velocity = new Vector2(r2d.velocity.x, jumpHeight);
-        // }
+        CheckInput();     
     }
 
-    void FixedUpdate() {
-        Bounds colliderBounds = mainCollider.bounds;
-        float colliderRadius = 0.4f * Mathf.Abs(transform.localScale.x);
-        Vector3 groundCheckPos = colliderBounds.min + new Vector3(0.5f, colliderRadius * 0.9f, 0);
-        
-        // Check if player is grounded
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheckPos, colliderRadius);
-        
-        //Check if any of the overlapping colliders are not player collider, if so, set isGrounded to true
-        // isGrounded = false;
-        // if (colliders.Length > 0) {
-        //     for (int i = 0; i < colliders.Length; i++) {
-        //         if (colliders[i].tag == "Ground") {
-        //             isGrounded = true;
-        //             break;
+    private void FixedUpdate() {
+        CheckGround();
+        SlopeCheck();
+        ApplyMovement();
+    }
+
+    private void CheckInput() {
+        xInput = Input.GetAxisRaw("Horizontal");
+
+        if (Input.GetKeyDown(KeyCode.A) && facingDirection == -1) Flip();
+        else if (Input.GetKeyDown(KeyCode.D) && facingDirection == 1) Flip();
+
+        if (Input.GetKeyDown(KeyCode.Space)) Jump();
+    }
+    
+    private void CheckGround() {
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
+
+        if (rb.velocity.y <= 0.0f)
+            isJumping = false;
+
+        if (isGrounded && !isJumping && slopeDownAngle <= maxSlopeAngle)
+            canJump = true;
+    }
+
+    private void SlopeCheck() {
+        Vector2 checkPos = transform.position - (Vector3)(new Vector2(0.0f, capsuleColliderSize.y / 2));
+
+        SlopeCheckHorizontal(checkPos);
+        SlopeCheckVertical(checkPos);
+    }
+
+    private void SlopeCheckHorizontal(Vector2 checkPos) {
+        RaycastHit2D slopeHitFront = Physics2D.Raycast(checkPos, transform.right, slopeCheckDistance, whatIsGround);
+        RaycastHit2D slopeHitBack = Physics2D.Raycast(checkPos, -transform.right, slopeCheckDistance, whatIsGround);
+
+        if (slopeHitFront) {
+            isOnSlope = true;
+
+            slopeSideAngle = Vector2.Angle(slopeHitFront.normal, Vector2.up);
+
+        }
+        else if (slopeHitBack) {
+            isOnSlope = true;
+
+            slopeSideAngle = Vector2.Angle(slopeHitBack.normal, Vector2.up);
+        }
+        else {
+            slopeSideAngle = 0.0f;
+            isOnSlope = false;
+        }
+
+    }
+
+    private void SlopeCheckVertical(Vector2 checkPos) {      
+        RaycastHit2D hit = Physics2D.Raycast(checkPos, Vector2.down, slopeCheckDistance, whatIsGround);
+
+        if (hit) {
+            slopeNormalPerp = Vector2.Perpendicular(hit.normal).normalized;            
+
+            slopeDownAngle = Vector2.Angle(hit.normal, Vector2.up);
+
+            if (slopeDownAngle != lastSlopeAngle)
+                isOnSlope = true;
+
+            lastSlopeAngle = slopeDownAngle;
+           
+            Debug.DrawRay(hit.point, slopeNormalPerp, Color.blue);
+            Debug.DrawRay(hit.point, hit.normal, Color.green);
+        }
+
+        if (slopeDownAngle > maxSlopeAngle || slopeSideAngle > maxSlopeAngle)
+            canWalkOnSlope = false;
+        else
+            canWalkOnSlope = true;
+
+        if (isOnSlope && canWalkOnSlope && xInput == 0.0f)
+            rb.sharedMaterial = fullFriction;
+        else
+            rb.sharedMaterial = noFriction;
+    }
+
+    private void Jump() {
+        if (canJump) {
+            canJump = false;
+            isJumping = true;
+            newVelocity.Set(0.0f, 0.0f);
+            rb.velocity = newVelocity;
+            newForce.Set(0.0f, jumpForce);
+            rb.AddForce(newForce, ForceMode2D.Impulse);
+        }
+
+        // if (pMe.character == "owl") {
+        //     if (isGrounded) {
+        //         maxSpeed = oMaxSpeed;
+        //         jumpHeight = oJumpHeight;
+
+        //         r2d.velocity = new Vector2(r2d.velocity.x, jumpHeight);
+        //         flaps = 4;
+        //     } else {
+        //         maxSpeed = oFlightSpeed;
+        //         jumpHeight = oFlightHeight;
+
+        //         if (flaps > 0) {
+        //             r2d.velocity = new Vector2(r2d.velocity.x, jumpHeight);
+        //             flaps--;
         //         }
         //     }
         // }
 
-        // Apply movement velocity
-        if (!sliding) r2d.velocity = new Vector2((moveDirection) * maxSpeed, r2d.velocity.y);
+        // } else if (pMe.character == "turtle") {
+        //     if (Input.GetKeyDown(KeyCode.Space)) {
+        //         chargeTime = 0;
+        //         moveDirection = 0;
+        //         charging = true;
+        //     }
+
+        //     if (Input.GetKey(KeyCode.Space)) {
+        //         chargeTime += Time.deltaTime;
+        //     }
+
+        //     if (Input.GetKeyUp(KeyCode.Space)) {
+        //         charging = false;
+
+        //         if (facingRight) moveDirection = 1;
+        //         else moveDirection = -1;
+
+        //         // if (chargeTime < minChargeTime) maxSlideTime = 6
+        //         // else maxSlideTime = 3, 10
+
+        //         sliding = true;
+        //     }
+
+        //     if (sliding) {
+        //         if (slideTime < maxSlideTime) {
+        //             slideTime += Time.deltaTime;
+        //             r2d.velocity = new Vector2((moveDirection) * tSlideSpeed, r2d.velocity.y);
+        //         } else {
+        //             sliding = false;
+        //             slideTime = 0;
+        //         }
+        //     }
+        // }
+    }   
+
+    private void ApplyMovement() {
+        if (isGrounded && !isOnSlope && !isJumping) { //if not on slope
+            Debug.Log("This one");
+            newVelocity.Set(movementSpeed * xInput, 0.0f);
+            rb.velocity = newVelocity;
+        }
+        else if (isGrounded && isOnSlope && canWalkOnSlope && !isJumping) { //If on slope
+            newVelocity.Set(movementSpeed * slopeNormalPerp.x * -xInput, movementSpeed * slopeNormalPerp.y * -xInput);
+            rb.velocity = newVelocity;
+        }
+        else if (!isGrounded) { //If in air
+            newVelocity.Set(movementSpeed * xInput, rb.velocity.y);
+            rb.velocity = newVelocity;
+        }
     }
 
-    void OnCollisionEnter2D(Collision2D collision) {
-        if (collision.gameObject.tag == "Ground")
-            isGrounded = true;
+    private void Flip() {
+        facingDirection *= -1;
+        transform.Rotate(0.0f, 180.0f, 0.0f);
     }
 
-    void OnCollisionExit2D(Collision2D collision) {
-        if (collision.gameObject.tag == "Ground")
-            isGrounded = false;
+    private void OnDrawGizmos() {
+        Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
     }
+
+    void ChangeCharacter(string c) {
+        if (c == "rabbit") {
+            character = "rabbit";
+            GetComponent<SpriteRenderer>().color = Color.blue;
+            // pMo.maxSpeed = pMo.rMaxSpeed;
+            // pMo.jumpHeight = pMo.rJumpHeight;
+
+        } else if (c == "turtle") {
+            character = "turtle";
+            GetComponent<SpriteRenderer>().color = Color.green;
+            // pMo.maxSpeed = pMo.tMaxSpeed;
+            // pMo.jumpHeight = pMo.tJumpHeight;
+
+        } else if (c == "owl") {
+            character = "owl";
+            GetComponent<SpriteRenderer>().color = Color.red;
+            // pMo.maxSpeed = pMo.oMaxSpeed;
+            // pMo.jumpHeight = pMo.oJumpHeight;
+        }
+    }
+
+}

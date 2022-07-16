@@ -133,10 +133,12 @@ GameObject:
   m_Component:
   - component: {fileID: 28577126}
   - component: {fileID: 28577125}
+  - component: {fileID: 28577129}
   - component: {fileID: 28577124}
   - component: {fileID: 28577123}
   - component: {fileID: 28577127}
   - component: {fileID: 28577128}
+  - component: {fileID: 28577130}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -172,7 +174,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 28577122}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 6200000, guid: aac13676a4da749aba836fb7049f8810, type: 2}
   m_IsTrigger: 0
@@ -258,6 +260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af27594396b074ecc9aec0a6072dd64c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  character: 
   rMaxSpeed: 8
   rJumpHeight: 16
   tMaxSpeed: 3
@@ -274,9 +277,17 @@ MonoBehaviour:
   oJumpHeight: 19.5
   oFlightHeight: 3
   flaps: 4
-  maxSpeed: 0
-  jumpHeight: 0
-  moveDirection: 0
+  movementSpeed: 10
+  groundCheckRadius: 0
+  jumpForce: 0
+  slopeCheckDistance: 0
+  maxSlopeAngle: 0
+  groundCheck: {fileID: 0}
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 256
+  noFriction: {fileID: 6200000, guid: aac13676a4da749aba836fb7049f8810, type: 2}
+  fullFriction: {fileID: 0}
 --- !u!114 &28577128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -289,8 +300,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec1bb061a01f54566bb097a6413f6ab5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character: 
   lives: 3
+--- !u!70 &28577129
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 28577122}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: aac13676a4da749aba836fb7049f8810, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1, y: 1}
+  m_Direction: 0
+--- !u!114 &28577130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 28577122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1511ccae7919cfc46b603b9b337fdc94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &74323327
 GameObject:
   m_ObjectHideFlags: 0
@@ -1212,7 +1250,7 @@ GameObject:
   - component: {fileID: 872707935}
   - component: {fileID: 872707937}
   - component: {fileID: 872707936}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Square (1)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -1540,7 +1578,7 @@ GameObject:
   - component: {fileID: 1360614801}
   - component: {fileID: 1360614800}
   - component: {fileID: 1360614799}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Closed Sprite Shape (1)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -1806,7 +1844,7 @@ GameObject:
   - component: {fileID: 1677467477}
   - component: {fileID: 1677467479}
   - component: {fileID: 1677467478}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Square (2)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -1915,7 +1953,7 @@ GameObject:
   - component: {fileID: 1863053862}
   - component: {fileID: 1863053861}
   - component: {fileID: 1863053860}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Platform
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -2024,7 +2062,7 @@ GameObject:
   - component: {fileID: 2097659505}
   - component: {fileID: 2097659506}
   - component: {fileID: 2097659507}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Square
   m_TagString: Ground
   m_Icon: {fileID: 0}
