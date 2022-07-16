@@ -22,9 +22,9 @@ public class PlayerMechanics : MonoBehaviour {
     }
 
     void OnCollisionEnter2D(Collision2D collision) {
-        Debug.Log("hi");
         if (collision.gameObject.tag == "Enemy") {
             lives--;
+            Debug.Log("lives: " + lives);
         }
     }
 
