@@ -163,18 +163,23 @@ MonoBehaviour:
   turtleJump: 0
   slideTime: 0
   maxSlideTime: 0.41
+  coolDown: 1
+  coolDownTimer: 0
+  dashing: 0
   sliding: 0
   owlSpeed: 6
-  owlSpeedFlight: 7
-  owlJump: 26
-  owlJumpFlight: 6
+  owlSpeedFlight: 5
+  owlJump: 20
+  owlJumpFlight: 8
   flaps: 4
   marker2: 0
-  minChargeTime: 1
+  minChargeTime: 0.6
   chargeTime: 0
   charging: 0
   speed: 10
   jump: 20
+  slowDown: 0.5
+  slowDown2: 1.2
   slopeMultiplier: 0
 --- !u!114 &8542444690092807679
 MonoBehaviour:

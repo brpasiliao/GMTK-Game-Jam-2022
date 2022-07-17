@@ -46,7 +46,7 @@ public class PlayerMovement : MonoBehaviour {
 
     void Start() {
         rb = GetComponent<Rigidbody2D>();
-        changeCharacter("rabbit");
+        ChangeCharacter("rabbit");
     }
 
     void Update () {
@@ -83,9 +83,9 @@ public class PlayerMovement : MonoBehaviour {
         if (onSlope) rb.velocity = new Vector2 (moveVelocity, rb.velocity.y * slopeMultiplier);
         else rb.velocity = new Vector2 (moveVelocity, rb.velocity.y);
 
-        if (Input.GetKeyDown("1")) changeCharacter("rabbit");
-        if (Input.GetKeyDown("2")) changeCharacter("turtle");
-        if (Input.GetKeyDown("3")) changeCharacter("owl");
+        if (Input.GetKeyDown("1")) ChangeCharacter("rabbit");
+        if (Input.GetKeyDown("2")) ChangeCharacter("turtle");
+        if (Input.GetKeyDown("3")) ChangeCharacter("owl");
     }
 
     void Special() {
@@ -93,11 +93,12 @@ public class PlayerMovement : MonoBehaviour {
             if (Input.GetKeyDown(KeyCode.Space)) {
                 charging = true;
                 chargeTime = 0;
-                speed = 0;
             }
 
             if (Input.GetKey(KeyCode.Space)) {
                 chargeTime += Time.deltaTime;
+                if (chargeTime > minChargeTime)
+                    speed = 0;
             }
 
             if (Input.GetKeyUp(KeyCode.Space)) {
@@ -120,9 +121,9 @@ public class PlayerMovement : MonoBehaviour {
                 rb.gravityScale = 6;
 
                 rb.velocity = new Vector2 (rb.velocity.x, jump);
-                // if (Random.Range(0,2) == 0) flaps = 1;
-                // else flaps = 4;
-                flaps = 4;
+                if (Random.Range(0,2) == 0) flaps = 1;
+                else flaps = 4;
+                // flaps = 4;
 
             } else {
                 speed = owlSpeedFlight;
@@ -165,7 +166,6 @@ public class PlayerMovement : MonoBehaviour {
                 } else {
                     dashing = false;
                     slideTime = 0;
-                    // speed = turtleSpeed;
                     sliding = true;
                 }
             }
@@ -199,7 +199,6 @@ public class PlayerMovement : MonoBehaviour {
         if (collision.gameObject.tag == "Wall" &&
             character == "turtle" && (dashing || sliding)) {
                 facing = -facing;
-                // slowDown = -slowDown;
             }
     }
 
@@ -210,22 +209,22 @@ public class PlayerMovement : MonoBehaviour {
             onSlope = false;
     }
 
-    void changeCharacter(string c) {
+    void ChangeCharacter(string c) {
         if (c == "rabbit") {
             character = "rabbit";
-            GetComponent<SpriteRenderer>().color = Color.blue;
+            // GetComponent<SpriteRenderer>().color = Color.blue;
             speed = rabbitSpeed;
             jump = rabbitJump;
 
         } else if (c == "turtle") {
             character = "turtle";
-            GetComponent<SpriteRenderer>().color = Color.green;
+            // GetComponent<SpriteRenderer>().color = Color.green;
             speed = turtleSpeed;
             jump = turtleJump;
 
         } else if (c == "owl") {
             character = "owl";
-            GetComponent<SpriteRenderer>().color = Color.red;
+            // GetComponent<SpriteRenderer>().color = Color.red;
             speed = owlSpeed;
             jump = owlJump;
         }
