@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour {
     public string character;
@@ -58,7 +59,8 @@ public class PlayerMovement : MonoBehaviour {
         lastGrounded = transform.position;
 
         ChangeCharacter("rabbit");
-        ears.GetComponent<SpriteRenderer>().enabled = false;
+        if (SceneManager.GetActiveScene().name == "Tutorial")
+            ears.GetComponent<SpriteRenderer>().enabled = false;
     }
 
     void Update () {

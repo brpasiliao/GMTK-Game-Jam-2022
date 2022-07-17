@@ -21,7 +21,7 @@ public class PlayerMechanics : MonoBehaviour {
     }
 
     void Update() {
-        if (lives == 0) SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        if (lives == 0) ChangeScene(SceneManager.GetActiveScene().name);
 
         if (safe) {
             if (safeTimer < safeTime) 
@@ -55,7 +55,11 @@ public class PlayerMechanics : MonoBehaviour {
             rb.velocity = new Vector2 (rb.velocity.x, endVelocity);
         }
         if (collider.gameObject.name == "NextLevel") {
-            SceneManager.LoadScene("Level1");
+            ChangeScene("Level 1");
         }
+    }
+
+    public void ChangeScene(string scene) {
+        SceneManager.LoadScene(scene);
     }
 }
