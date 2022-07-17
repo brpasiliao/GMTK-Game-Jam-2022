@@ -3,6 +3,7 @@ using System.Collections;
 
 public class PlayerMovement : MonoBehaviour {
     public string character;
+    public Vector2 lastGrounded;
 
     public float rabbitSpeed = 7f;
     public float rabbitJump = 29f;
@@ -53,11 +54,16 @@ public class PlayerMovement : MonoBehaviour {
     void Start() {
         rb = GetComponent<Rigidbody2D>();
 
+        rb.gravityScale = 10;
+        lastGrounded = transform.position;
+
         ChangeCharacter("rabbit");
+        ears.GetComponent<SpriteRenderer>().enabled = false;
     }
 
     void Update () {
         moveVelocity = 0;
+        if (isGrounded && rb.velocity.y == 0) lastGrounded = transform.position;
 
         Special();
 
@@ -66,15 +72,15 @@ public class PlayerMovement : MonoBehaviour {
             if (sliding) {
                 if (Input.GetKey (KeyCode.LeftArrow) || Input.GetKey (KeyCode.A)) {
                     if (facing == 1) slowDown *= slowDown2;
-                    else slowDown = 0;
+                    else slowDown = 0.05f;
                 } 
                 if (Input.GetKey (KeyCode.RightArrow) || Input.GetKey (KeyCode.D)) {
                     if (facing == -1) slowDown *= slowDown2;
-                    else slowDown = 0;
+                    else slowDown = 0.05f;
                 }
                 if (Input.GetKeyUp (KeyCode.LeftArrow) || Input.GetKeyUp (KeyCode.A) || 
                     Input.GetKeyUp (KeyCode.LeftArrow) || Input.GetKeyUp (KeyCode.A))
-                    slowDown = 0.5f;
+                    slowDown = 0.1f;
             }
 
         } else {
@@ -119,6 +125,7 @@ public class PlayerMovement : MonoBehaviour {
 
                 if (chargeTime > minChargeTime) {
                     jump = Random.Range(21f, 38f);
+                    ears.GetComponent<AudioSource>().Play();
                 }
 
                 speed = rabbitSpeed;
@@ -144,9 +151,12 @@ public class PlayerMovement : MonoBehaviour {
                 jump = owlJumpFlight;
 
                 if (flaps > 0) {
-                    wings.GetComponent<Animator>().Play("Wing_Flap");
                     rb.velocity = new Vector2 (rb.velocity.x, jump);
                     flaps--;
+
+                    wings.GetComponent<Animator>().Play("Wing_Flap");
+                    wings.GetComponent<AudioSource>().Play();
+
                 } else {
                     wings.GetComponent<Animator>().Play("Wing_Idle");
                     rb.gravityScale = 10;
@@ -196,11 +206,11 @@ public class PlayerMovement : MonoBehaviour {
                         coolDownTimer += Time.deltaTime;
                     } else {
                         GetComponent<Animator>().Play("Shell_Out");
-                        shell.SetActive(true);
+                        shell.GetComponent<SpriteRenderer>().enabled = true;
                         coolDownTimer = 0f;
                         sliding = false;
                         speed = turtleSpeed;
-                        slowDown = 0.5f;
+                        slowDown = 0.1f;
                     }
                 }
             }
@@ -227,7 +237,7 @@ public class PlayerMovement : MonoBehaviour {
             onSlope = false;
     }
 
-    void ChangeCharacter(string c) {
+    public void ChangeCharacter(string c) {
         if (c == "rabbit") {
             character = "rabbit";
             speed = rabbitSpeed;
@@ -236,6 +246,7 @@ public class PlayerMovement : MonoBehaviour {
             wings.SetActive(false);
             shell.SetActive(false);
             ears.SetActive(true);
+            ears.GetComponent<SpriteRenderer>().enabled = true;
 
         } else if (c == "turtle") {
             character = "turtle";
@@ -245,6 +256,7 @@ public class PlayerMovement : MonoBehaviour {
             wings.SetActive(false);
             shell.SetActive(true);
             ears.SetActive(false);
+            shell.GetComponent<SpriteRenderer>().enabled = true;
 
         } else if (c == "owl") {
             character = "owl";
@@ -254,6 +266,7 @@ public class PlayerMovement : MonoBehaviour {
             wings.SetActive(true);
             shell.SetActive(false);
             ears.SetActive(false);
+            wings.GetComponent<SpriteRenderer>().enabled = true;
         }
 
         poof.SetActive(true);
@@ -263,20 +276,23 @@ public class PlayerMovement : MonoBehaviour {
 
     void PlayAnimations() {
         if (character == "turtle" && Input.GetKeyDown(KeyCode.Space)) {
+            shell.GetComponent<SpriteRenderer>().enabled = false;
+            shell.GetComponent<AudioSource>().Play();
             GetComponent<Animator>().Play("Shell_Into");
-            shell.SetActive(false);
         }
         else if (character == "turtle" && charging)
             GetComponent<Animator>().Play("Shell_Rev");
-        else if (character == "turtle" && dashing)
+        else if (character == "turtle" && dashing) {
+            shell.GetComponent<AudioSource>().Stop();
             GetComponent<Animator>().Play("Shell_Spin_Start");
+        }
         else if (character == "turtle" && sliding)
             GetComponent<Animator>().Play("Shell_Spin_End");
         else if (isGrounded && rb.velocity.x != 0) 
             GetComponent<Animator>().Play("Run");
         else if (!isGrounded && rb.velocity.y > 0) 
             GetComponent<Animator>().Play("Jump_Up");
-        else if (!isGrounded && rb.velocity.y < 0) 
+        else if (!isGrounded && rb.velocity.y <= 0) 
             GetComponent<Animator>().Play("Jump_Down");
         else GetComponent<Animator>().Play("Idle");
     }
