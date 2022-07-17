@@ -44,8 +44,15 @@ public class PlayerMovement : MonoBehaviour {
 
     Rigidbody2D rb;
 
+    public GameObject body;
+    public GameObject wings;
+    public GameObject shell;
+    public GameObject ears;
+    public GameObject poof;
+
     void Start() {
         rb = GetComponent<Rigidbody2D>();
+
         ChangeCharacter("rabbit");
     }
 
@@ -69,14 +76,18 @@ public class PlayerMovement : MonoBehaviour {
                     Input.GetKeyUp (KeyCode.LeftArrow) || Input.GetKeyUp (KeyCode.A))
                     slowDown = 0.5f;
             }
+
         } else {
             if (Input.GetKey (KeyCode.LeftArrow) || Input.GetKey (KeyCode.A)) {
                 moveVelocity = -speed;
                 facing = -1;
+                transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
             }
             if (Input.GetKey (KeyCode.RightArrow) || Input.GetKey (KeyCode.D)) {
                 moveVelocity = speed;
                 facing = 1;
+                // transform.Rotate(0, 0, 0);
+                transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
             }
         }
 
@@ -86,6 +97,8 @@ public class PlayerMovement : MonoBehaviour {
         if (Input.GetKeyDown("1")) ChangeCharacter("rabbit");
         if (Input.GetKeyDown("2")) ChangeCharacter("turtle");
         if (Input.GetKeyDown("3")) ChangeCharacter("owl");
+
+        PlayAnimations();
     }
 
     void Special() {
@@ -109,6 +122,7 @@ public class PlayerMovement : MonoBehaviour {
                 }
 
                 speed = rabbitSpeed;
+                GetComponent<Animator>().Play("Jump_Up");
                 rb.velocity = new Vector2 (rb.velocity.x, jump);
                 jump = rabbitJump;
             }
@@ -130,9 +144,11 @@ public class PlayerMovement : MonoBehaviour {
                 jump = owlJumpFlight;
 
                 if (flaps > 0) {
+                    wings.GetComponent<Animator>().Play("Wing_Flap");
                     rb.velocity = new Vector2 (rb.velocity.x, jump);
                     flaps--;
                 } else {
+                    wings.GetComponent<Animator>().Play("Wing_Idle");
                     rb.gravityScale = 10;
                 }
             }
@@ -179,6 +195,8 @@ public class PlayerMovement : MonoBehaviour {
                         speed = 0;
                         coolDownTimer += Time.deltaTime;
                     } else {
+                        GetComponent<Animator>().Play("Shell_Out");
+                        shell.SetActive(true);
                         coolDownTimer = 0f;
                         sliding = false;
                         speed = turtleSpeed;
@@ -212,21 +230,54 @@ public class PlayerMovement : MonoBehaviour {
     void ChangeCharacter(string c) {
         if (c == "rabbit") {
             character = "rabbit";
-            // GetComponent<SpriteRenderer>().color = Color.blue;
             speed = rabbitSpeed;
             jump = rabbitJump;
 
+            wings.SetActive(false);
+            shell.SetActive(false);
+            ears.SetActive(true);
+
         } else if (c == "turtle") {
             character = "turtle";
-            // GetComponent<SpriteRenderer>().color = Color.green;
             speed = turtleSpeed;
             jump = turtleJump;
 
+            wings.SetActive(false);
+            shell.SetActive(true);
+            ears.SetActive(false);
+
         } else if (c == "owl") {
             character = "owl";
-            // GetComponent<SpriteRenderer>().color = Color.red;
             speed = owlSpeed;
             jump = owlJump;
+
+            wings.SetActive(true);
+            shell.SetActive(false);
+            ears.SetActive(false);
         }
+
+        poof.SetActive(true);
+        poof.GetComponent<Animator>().Play("Poof");
+        poof.SetActive(false);
+    }
+
+    void PlayAnimations() {
+        if (character == "turtle" && Input.GetKeyDown(KeyCode.Space)) {
+            GetComponent<Animator>().Play("Shell_Into");
+            shell.SetActive(false);
+        }
+        else if (character == "turtle" && charging)
+            GetComponent<Animator>().Play("Shell_Rev");
+        else if (character == "turtle" && dashing)
+            GetComponent<Animator>().Play("Shell_Spin_Start");
+        else if (character == "turtle" && sliding)
+            GetComponent<Animator>().Play("Shell_Spin_End");
+        else if (isGrounded && rb.velocity.x != 0) 
+            GetComponent<Animator>().Play("Run");
+        else if (!isGrounded && rb.velocity.y > 0) 
+            GetComponent<Animator>().Play("Jump_Up");
+        else if (!isGrounded && rb.velocity.y < 0) 
+            GetComponent<Animator>().Play("Jump_Down");
+        else GetComponent<Animator>().Play("Idle");
     }
 }
