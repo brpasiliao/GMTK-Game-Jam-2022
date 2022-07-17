@@ -1,0 +1,1422 @@
+fileFormatVersion: 2
+guid: 9682711a666fd254eb80bf31fd5ae887
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 64
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Ramp_Redo_0
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 489
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 830d0b81dae5d3f4998d6c673439ded9
+      internalID: -89445493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ramp_Redo_1
+      rect:
+        serializedVersion: 2
+        x: 1344
+        y: 489
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33a52e12ebc822e49834b4f50d27f4f5
+      internalID: 205766460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ramp_Redo_2
+      rect:
+        serializedVersion: 2
+        x: 1408
+        y: 489
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7164d345431ac3a47b336ca9d2f27129
+      internalID: -71104519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ramp_Redo_3
+      rect:
+        serializedVersion: 2
+        x: 1472
+        y: 489
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 743ecfba2970cc9478e785d948abd617
+      internalID: 888958414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ramp_Redo_4
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 489
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 841b384260f49064f9dd50fe31ca1779
+      internalID: 673696294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ramp_Redo_5
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 425
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 639134ac2dd6c664a8ca64fbd2759fa5
+      internalID: 2003826259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ramp_Redo_6
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 425
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ffd13c1b49dfd64db19b4484971c632
+      internalID: 549890057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ramp_Redo_7
+      rect:
+        serializedVersion: 2
+        x: 1216
+        y: 425
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf966777870e7f6419ce9ccece3f49c0
+      internalID: -1467401891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ramp_Redo_8
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 425
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05d55d7837c035443869cf40cce68db7
+      internalID: -496983816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ramp_Redo_9
+      rect:
+        serializedVersion: 2
+        x: 1344
+        y: 425
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09981c35dc343de4e9a680077db99bab
+      internalID: 1516851692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ramp_Redo_10
+      rect:
+        serializedVersion: 2
+        x: 1408
+        y: 425
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70708029e8a9f204193d1f42ae198de4
+      internalID: 882628010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ramp_Redo_11
+      rect:
+        serializedVersion: 2
+        x: 1472
+        y: 425
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 933fc67812790dd4c84818551fe46904
+      internalID: 1816776553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ramp_Redo_12
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 425
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8806a1f8b7bf9be498f6cdfe3de56cdb
+      internalID: -208990027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ramp_Redo_13
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 361
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd8f974d85f1bdd48bb8beb8204ce769
+      internalID: 1679763923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ramp_Redo_14
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 361
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f7bb0feeb9b9b94dac9aee382633bab
+      internalID: 2124459677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ramp_Redo_15
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 361
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9cd911d43332f4842a0a21706228145b
+      internalID: 1677154138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ramp_Redo_16
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 361
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e11aa144492e05c45b7236eb4b12e000
+      internalID: -1471565849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ramp_Redo_17
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 361
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8be632c2f93d3434c8c57023503665c8
+      internalID: 1428531374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ramp_Redo_18
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 361
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3509e15de7d1d347bff7f13ab33f84c
+      internalID: 1248508807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ramp_Redo_19
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 361
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba897ac4f4e49744ab9eeb1f970f564f
+      internalID: -1713585685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ramp_Redo_20
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 361
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0daec8ec9ec0034da79f4a4a5a3f3a6
+      internalID: -1622582283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ramp_Redo_21
+      rect:
+        serializedVersion: 2
+        x: 1216
+        y: 361
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 660c0837d983422428c334dfac61e2a8
+      internalID: -800258725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ramp_Redo_22
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 361
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7a0af551c359e84695503335cffee60
+      internalID: -1388013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ramp_Redo_23
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 297
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -32, y: -28}
+        - {x: -32, y: -32}
+        - {x: 32, y: -32}
+        - {x: 32, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 970df2a7a734a20449c4c54a12005aac
+      internalID: 610867002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ramp_Redo_24
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 297
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -32, y: 0}
+        - {x: -32, y: -32}
+        - {x: 32, y: -32}
+        - {x: 32, y: 27}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f7ca5e5279e6d54396e4d6ece59e7f2
+      internalID: 1079317593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ramp_Redo_25
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 297
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -32, y: 29}
+        - {x: -32, y: -32}
+        - {x: 32, y: -32}
+        - {x: 32, y: 29}
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc3bda412b1bf474eada17854cd9b802
+      internalID: 580700495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ramp_Redo_26
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 297
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -32, y: 29}
+        - {x: -32, y: -32}
+        - {x: 32, y: -32}
+        - {x: 32, y: 29}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4808f970f93ae5f4ba222a416af855cc
+      internalID: 1195191954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ramp_Redo_27
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 297
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -32, y: 29}
+        - {x: -32, y: -31}
+        - {x: 32, y: -32}
+        - {x: 32, y: 29}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ec46e938fa91bc42999efc0c119b131
+      internalID: -1967968922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ramp_Redo_28
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 297
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -32, y: 29}
+        - {x: -32, y: -32}
+        - {x: 32, y: -32}
+        - {x: 32, y: 29}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37830510e9976d149bae3f5ff87a2ca6
+      internalID: -1755905773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ramp_Redo_29
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 297
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b454359d4779454e9ea348d7d8260b7
+      internalID: -1541910636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ramp_Redo_30
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 297
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51526c114e52a5248bdfe3ce5026b806
+      internalID: -754779728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ramp_Redo_31
+      rect:
+        serializedVersion: 2
+        x: 1216
+        y: 297
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a348d64286f6ccd47a55271a14a9341e
+      internalID: -1331801040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ramp_Redo_32
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 297
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ed4a6ded323e5e438d1c6e01a9c9b9d
+      internalID: 2119034070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ramp_Redo_33
+      rect:
+        serializedVersion: 2
+        x: 1344
+        y: 297
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e349a9587c11a9f4fbf78b8a59f4c771
+      internalID: -481802561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ramp_Redo_34
+      rect:
+        serializedVersion: 2
+        x: 1408
+        y: 297
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2dc8d1828f93afd4493eece9d760b7ae
+      internalID: -1087623973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ramp_Redo_35
+      rect:
+        serializedVersion: 2
+        x: 1472
+        y: 297
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e906153ac3035894c97a1d8e7f8ea56c
+      internalID: -275739807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ramp_Redo_36
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 233
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bde3261c217e03e4ebdeebc5b198fc0f
+      internalID: -261503568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ramp_Redo_37
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 233
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a034f21bfa3ca3b4d80a77197a1d4ffb
+      internalID: 2068420307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ramp_Redo_38
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 233
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e69fa3b3e5c3334499f00fffd3e03c2
+      internalID: -135956064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ramp_Redo_39
+      rect:
+        serializedVersion: 2
+        x: 1216
+        y: 233
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98dffd50206a063448983a7c034af408
+      internalID: 2048207219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ramp_Redo_40
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 233
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a12330cf9e818484296409b00610f4a6
+      internalID: 407759721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ramp_Redo_41
+      rect:
+        serializedVersion: 2
+        x: 1344
+        y: 233
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb666242db5b8a34a85120e0e7737b62
+      internalID: 1095931634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ramp_Redo_42
+      rect:
+        serializedVersion: 2
+        x: 1408
+        y: 233
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d59c54be3c5dc4d449e54d13fd6ef351
+      internalID: 1696859441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ramp_Redo_43
+      rect:
+        serializedVersion: 2
+        x: 1472
+        y: 233
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9bbc9afd5f2ff74481acc6dec7aebbf
+      internalID: -760337451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ramp_Redo_44
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 233
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44446052f9dcf5a438de62826c7c8c38
+      internalID: -1745793734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ramp_Redo_45
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 169
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 692b19982fb79034291b2821f04a6dce
+      internalID: -1620697575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ramp_Redo_46
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 169
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 116c8643681f5e24a83f7aab5e57a792
+      internalID: -318195084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ramp_Redo_47
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 169
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 706e48bb6f6b8214b9fedf40c8f6f9a2
+      internalID: -1633096538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ramp_Redo_48
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 169
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0db72d4ae5629f447b2c2095ee513cf7
+      internalID: -725985629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ramp_Redo_49
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 169
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bbe3d0290bcd2b945ae2eb747a00a20e
+      internalID: 962020681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ramp_Redo_50
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 105
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7efae1b36f95bfa4bb5742bd9f3cb3f7
+      internalID: -1840130861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ramp_Redo_51
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 105
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc2083363e6d2f54aad89aec981505e4
+      internalID: -554709481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ramp_Redo_52
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 105
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8aa84b1f78502a241b67d7f27fc1322a
+      internalID: 842564541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ramp_Redo_53
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 105
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce9c6242fa166724692c65d37a046227
+      internalID: -527346550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ramp_Redo_54
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 41
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9317c16ab963b0458e1c4273f8a62aa
+      internalID: -971159700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ramp_Redo_55
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 41
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 850dddeb6a8ca0a4a82be19e1a9a6c8c
+      internalID: -1298569219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ramp_Redo_56
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 41
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56db598d448d31847abeffdcbf66291c
+      internalID: 2141473845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ramp_Redo_57
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 41
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05bcc16958808de46ba56a4e94d60973
+      internalID: 900721586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Ramp_Redo_38: -135956064
+      Ramp_Redo_36: -261503568
+      Ramp_Redo_10: 882628010
+      Ramp_Redo_16: -1471565849
+      Ramp_Redo_8: -496983816
+      Ramp_Redo_2: -71104519
+      Ramp_Redo_51: -554709481
+      Ramp_Redo_31: -1331801040
+      Ramp_Redo_25: 580700495
+      Ramp_Redo_47: -1633096538
+      Ramp_Redo_46: -318195084
+      Ramp_Redo_43: -760337451
+      Ramp_Redo_50: -1840130861
+      Ramp_Redo_24: 1079317593
+      Ramp_Redo_41: 1095931634
+      Ramp_Redo_26: 1195191954
+      Ramp_Redo_57: 900721586
+      Ramp_Redo_20: -1622582283
+      Ramp_Redo_9: 1516851692
+      Ramp_Redo_23: 610867002
+      Ramp_Redo_17: 1428531374
+      Ramp_Redo_44: -1745793734
+      Ramp_Redo_34: -1087623973
+      Ramp_Redo_52: 842564541
+      Ramp_Redo_39: 2048207219
+      Ramp_Redo_4: 673696294
+      Ramp_Redo_42: 1696859441
+      Ramp_Redo_30: -754779728
+      Ramp_Redo_1: 205766460
+      Ramp_Redo_21: -800258725
+      Ramp_Redo_28: -1755905773
+      Ramp_Redo_49: 962020681
+      Ramp_Redo_18: 1248508807
+      Ramp_Redo_45: -1620697575
+      Ramp_Redo_14: 2124459677
+      Ramp_Redo_32: 2119034070
+      Ramp_Redo_22: -1388013
+      Ramp_Redo_6: 549890057
+      Ramp_Redo_40: 407759721
+      Ramp_Redo_0: -89445493
+      Ramp_Redo_15: 1677154138
+      Ramp_Redo_35: -275739807
+      Ramp_Redo_7: -1467401891
+      Ramp_Redo_19: -1713585685
+      Ramp_Redo_37: 2068420307
+      Ramp_Redo_27: -1967968922
+      Ramp_Redo_12: -208990027
+      Ramp_Redo_29: -1541910636
+      Ramp_Redo_48: -725985629
+      Ramp_Redo_33: -481802561
+      Ramp_Redo_55: -1298569219
+      Ramp_Redo_5: 2003826259
+      Ramp_Redo_53: -527346550
+      Ramp_Redo_54: -971159700
+      Ramp_Redo_3: 888958414
+      Ramp_Redo_56: 2141473845
+      Ramp_Redo_13: 1679763923
+      Ramp_Redo_11: 1816776553
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &330545220
 Transform:
   m_ObjectHideFlags: 0
@@ -206,7 +206,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1027633114
 Transform:
   m_ObjectHideFlags: 0
@@ -311,7 +311,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1238770555
 Transform:
   m_ObjectHideFlags: 0
@@ -416,7 +416,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1561059280
 Transform:
   m_ObjectHideFlags: 0
@@ -559,8 +559,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.017911911, y: -0.119413614}
-  m_Size: {x: 1, y: 3}
+  m_Offset: {x: 0.017911911, y: -0.056081533}
+  m_Size: {x: 1, y: 2.8733358}
   m_Direction: 0
 --- !u!58 &8542444690092807667
 CircleCollider2D:
@@ -613,7 +613,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   character: 
   rabbitSpeed: 7
-  rabbitJump: 29
+  rabbitJump: 40
   marker: 0
   turtleSpeed: 3
   turtleSpeedSlide: 15
