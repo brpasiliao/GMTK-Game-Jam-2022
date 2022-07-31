@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayerMechanics : MonoBehaviour {
+public class PlayerStats : MonoBehaviour {
+    public delegate void OnGameOver();
+    public static event OnGameOver GameOver;
+
     public int lives;
 
     PlayerMovement pMo;
@@ -21,8 +24,6 @@ public class PlayerMechanics : MonoBehaviour {
     }
 
     void Update() {
-        if (lives == 0) ChangeScene(SceneManager.GetActiveScene().name);
-
         if (safe) {
             if (safeTimer < safeTime) 
                 safeTimer += Time.deltaTime;
@@ -33,15 +34,24 @@ public class PlayerMechanics : MonoBehaviour {
         }
     }
 
+    void LoseLife() {
+        lives--;
+        safe = true;
+        Debug.Log("lives: " + lives);
+
+        if (lives == 0) {
+            Debug.Log("death");
+            GameOver?.Invoke();
+        }
+    }
+
     void OnCollisionEnter2D(Collision2D collision) {
         if (!safe && collision.gameObject.tag == "Enemy") {
-            if (pMo.character == "turtle" && pMo.dashing) {
-                collision.gameObject.SetActive(false);
-            } else {
-                lives--;
-                safe = true;
-                Debug.Log("lives: " + lives);
-            }
+            // if (pMo.character == "turtle" && pMo.dashing) {
+            //     collision.gameObject.SetActive(false);
+            // } else {
+                LoseLife();
+            // }
         }
     }
 

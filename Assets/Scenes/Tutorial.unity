@@ -1890,6 +1890,7 @@ GameObject:
   - component: {fileID: 727710429}
   - component: {fileID: 727710428}
   - component: {fileID: 727710431}
+  - component: {fileID: 727710432}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1997,6 +1998,18 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &727710432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 727710427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb403066bf7bd4b429517fd6b2c7fa41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &940834802
 GameObject:
   m_ObjectHideFlags: 0
@@ -6448,10 +6461,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 330545221, guid: ac51e87c81c4b154ab5d9b94f75c8173, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1027633113, guid: ac51e87c81c4b154ab5d9b94f75c8173, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -6464,9 +6473,9 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6557719398234478642, guid: ac51e87c81c4b154ab5d9b94f75c8173, type: 3}
-      propertyPath: m_Volume
-      value: 0.2
+    - target: {fileID: 2256973660511910471, guid: ac51e87c81c4b154ab5d9b94f75c8173, type: 3}
+      propertyPath: jumpMax
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 8542444690092807664, guid: ac51e87c81c4b154ab5d9b94f75c8173, type: 3}
       propertyPath: owlJump
@@ -6539,10 +6548,6 @@ PrefabInstance:
     - target: {fileID: 8542444690092807679, guid: ac51e87c81c4b154ab5d9b94f75c8173, type: 3}
       propertyPath: endGravity
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8542444690092807679, guid: ac51e87c81c4b154ab5d9b94f75c8173, type: 3}
-      propertyPath: endVelocity
-      value: -2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac51e87c81c4b154ab5d9b94f75c8173, type: 3}
@@ -7095,7 +7100,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7791971, y: 1}
+    m_SensorSize: {x: 1.7762238, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
