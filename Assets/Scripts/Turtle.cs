@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class Turtle : MonoBehaviour {
-    public PlayerMovement player;
+    public Player player;
 
     float moveVelocity;
     float currentSpeed;
@@ -20,10 +20,10 @@ public class Turtle : MonoBehaviour {
     public float coolDown;
     float coolDownTimer;
 
-    int facing = 1;
-    public bool dashing = false;
-    public bool sliding = false;
-    public bool charging = false;
+    public bool isDashing = false;
+    public bool isSliding = false;
+    public bool isCharging = false;
+    public int facing = 1;
 
     private void OnEnable() {
         currentSpeed = speed;
@@ -34,7 +34,7 @@ public class Turtle : MonoBehaviour {
 
         Special();
 
-        if (!(dashing || sliding)) {
+        if (!(isDashing || isSliding)) {
             if (Input.GetKey (KeyCode.LeftArrow) || Input.GetKey (KeyCode.A)) {
                 moveVelocity = -currentSpeed;
                 facing = -1;
@@ -44,7 +44,7 @@ public class Turtle : MonoBehaviour {
                 facing = 1;
             }
         } else {
-            if (sliding) {
+            if (isSliding) {
                 if (Input.GetKey (KeyCode.LeftArrow) || Input.GetKey (KeyCode.A)) {
                     if (facing == 1) slowDown *= slowDown2;
                     else slowDown = 0.05f;
@@ -64,7 +64,7 @@ public class Turtle : MonoBehaviour {
     
     private void Special() {
         if (Input.GetKeyDown(KeyCode.Space)) {
-            charging = true;
+            isCharging = true;
             chargeTimer = 0;
             currentSpeed = 0;
             GetComponent<SpriteRenderer>().enabled = false;
@@ -76,29 +76,27 @@ public class Turtle : MonoBehaviour {
         }
 
         if (Input.GetKeyUp(KeyCode.Space)) {
-            charging = false;
-            dashing = true;
+            isCharging = false;
             GetComponent<AudioSource>().Stop();
 
             // 4 ; 0.41 | else 3,10 ; 0.205, 0.67
-            if (chargeTimer < chargeTime) 
-                slideTime = 0.41f;
-            else slideTime = Random.Range(0.205f, 0.67f);
+            if (chargeTimer > chargeTime) 
+                isDashing = true;
         }
 
-        if (dashing) {
+        if (isDashing) {
             if (slideTimer < slideTime) {
                 currentSpeed = speedSlide;
                 moveVelocity = currentSpeed * facing;
                 slideTimer += Time.deltaTime;
             } else {
-                dashing = false;
+                isDashing = false;
                 slideTimer = 0;
-                sliding = true;
+                isSliding = true;
             }
         }
 
-        if (sliding) {
+        if (isSliding) {
             if (currentSpeed > 1f) {
                 currentSpeed -= slowDown;
                 moveVelocity = currentSpeed * facing;
@@ -110,7 +108,7 @@ public class Turtle : MonoBehaviour {
                     player.gameObject.GetComponent<Animator>().Play("Shell_Out"); //player
                     GetComponent<SpriteRenderer>().enabled = true;
                     coolDownTimer = 0f;
-                    sliding = false;
+                    isSliding = false;
                     currentSpeed = speed;
                     slowDown = 0.1f;
                 }

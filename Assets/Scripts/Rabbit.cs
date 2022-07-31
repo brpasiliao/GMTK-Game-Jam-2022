@@ -3,23 +3,21 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class Rabbit : MonoBehaviour {
-    public PlayerMovement player;
+    public Player player;
 
     float moveVelocity;
     float currentSpeed;
     float currentJump;
 
     public float speed;
-    float jump = 0; 
-    public float jumpNormal;
-    public float jumpHigh;
+    public float jump;
 
     public float chargeTime;
     float chargeTimer = 0;
 
     private void OnEnable() {
         currentSpeed = speed;
-        currentJump = jump;
+        currentJump = 0;
     }
 
     private void Update() {
@@ -31,6 +29,11 @@ public class Rabbit : MonoBehaviour {
             moveVelocity = -currentSpeed;
         if (Input.GetKey (KeyCode.RightArrow) || Input.GetKey (KeyCode.D)) 
             moveVelocity = currentSpeed;
+
+        if (player.isHit) {
+            if (player.rb.velocity.x < 0) moveVelocity = -5;
+            else moveVelocity = 5;
+        }
 
         player.rb.velocity = new Vector2(moveVelocity, player.rb.velocity.y);
     }
@@ -47,14 +50,13 @@ public class Rabbit : MonoBehaviour {
 
             if (Input.GetKeyUp(KeyCode.Space)) {
                 if (chargeTimer > chargeTime) {
-                    if (Random.Range(0,2) == 0) currentJump = jumpNormal;
-                    else currentJump = jumpHigh;
+                    currentJump = jump;
 
                     GetComponent<AudioSource>().Play();
                 }
 
                 player.rb.velocity = new Vector2 (player.rb.velocity.x, currentJump);
-                currentJump = jump;
+                currentJump = 0;
             }
         }
     }

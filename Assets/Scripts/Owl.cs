@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class Owl : MonoBehaviour {
-    public PlayerMovement player;
+    public Player player;
 
     float moveVelocity;
     float currentSpeed;
@@ -38,20 +38,17 @@ public class Owl : MonoBehaviour {
     private void Special() {
         if (Input.GetKeyDown(KeyCode.Space)) {
             if (flaps > 0 || player.isGrounded) {
-                // GetComponent<Animator>().Play("Wing_Flap");
                 GetComponent<AudioSource>().Play();
 
                 if (player.isGrounded) {
                     currentSpeed = speed;
                     currentJump = jump;
                     player.rb.gravityScale = fall;
-
                     flaps = 4;
                 } else {
                     currentSpeed = speedFlight;
                     currentJump = jumpFlight;
                     player.rb.gravityScale = fallFlight;
-
                     flaps--;
                 }
 

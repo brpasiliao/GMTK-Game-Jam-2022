@@ -4,16 +4,16 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Narration : MonoBehaviour {
+    public delegate void OnNarrate(string character);
+    public static event OnNarrate Narrate;
+
     TMPro.TextMeshProUGUI textBox;
-    public PlayerMovement pm;
+    // public PlayerMovement pm;
 
     public string dialogue;
     public float speed;
     public string character = "";
     bool done;
-    // public float slowSpeed;
-    // public float fastSpeed;
-    // private bool forward = false;
 
     void Start() {
         textBox = GetComponent<TMPro.TextMeshProUGUI>();
@@ -29,24 +29,18 @@ public class Narration : MonoBehaviour {
             done = true;
         }
         if (character != "") {
-            pm.ChangeCharacter(character);
+            // pm.ChangeCharacter(character);
+            Narrate?.Invoke(character);
         }
     }
 
     IEnumerator DisplayMessage(string t) {
-        // textBox.text = "";
-
-
         foreach (char c in t) {
             textBox.text = textBox.text + c;
             Canvas.ForceUpdateCanvases();
             
-            // if (forward) yield return new WaitForSeconds(fastSpeed);
-            // else yield return new WaitForSeconds(slowSpeed);
             yield return new WaitForSeconds(speed);
         }
-
-        // forward = false;
     }
 }
 

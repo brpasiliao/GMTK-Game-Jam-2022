@@ -687,8 +687,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 8542444690092807664}
   speed: 9
-  jumpNormal: 29
-  jumpHigh: 40
+  jump: 40
   chargeTime: 1
 --- !u!95 &1561059282
 Animator:

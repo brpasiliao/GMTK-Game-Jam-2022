@@ -478,7 +478,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a3df9203876c4165be1474b87d7af52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pm: {fileID: 1714435820}
   dialogue: 
   speed: 0.03
   character: 
@@ -657,7 +656,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a3df9203876c4165be1474b87d7af52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pm: {fileID: 1714435820}
   dialogue: 
   speed: 0.03
   character: 
@@ -713,7 +711,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a3df9203876c4165be1474b87d7af52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pm: {fileID: 1714435820}
   dialogue: 
   speed: 0.03
   character: 
@@ -1018,7 +1015,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a3df9203876c4165be1474b87d7af52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pm: {fileID: 1714435820}
   dialogue: 
   speed: 0.03
   character: 
@@ -1199,7 +1195,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a3df9203876c4165be1474b87d7af52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pm: {fileID: 1714435820}
   dialogue: 
   speed: 0.03
   character: owl
@@ -1378,7 +1373,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a3df9203876c4165be1474b87d7af52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pm: {fileID: 1714435820}
   dialogue: 
   speed: 0.03
   character: rabbit
@@ -1503,7 +1497,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a3df9203876c4165be1474b87d7af52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pm: {fileID: 1714435820}
   dialogue: 
   speed: 0.03
   character: 
@@ -1807,7 +1800,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a3df9203876c4165be1474b87d7af52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pm: {fileID: 1714435820}
   dialogue: 
   speed: 0.03
   character: turtle
@@ -2185,7 +2177,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a3df9203876c4165be1474b87d7af52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pm: {fileID: 1714435820}
   dialogue: 
   speed: 0.03
   character: 
@@ -2367,7 +2358,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a3df9203876c4165be1474b87d7af52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pm: {fileID: 1714435820}
   dialogue: 
   speed: 0.03
   character: 
@@ -2636,7 +2626,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a3df9203876c4165be1474b87d7af52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pm: {fileID: 1714435820}
   dialogue: 
   speed: 0.03
   character: 
@@ -6045,7 +6034,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a3df9203876c4165be1474b87d7af52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pm: {fileID: 1714435820}
   dialogue: 
   speed: 0.03
   character: 
@@ -6331,7 +6319,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a3df9203876c4165be1474b87d7af52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pm: {fileID: 1714435820}
   dialogue: 
   speed: 0.03
   character: 
@@ -6471,11 +6458,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1561059279, guid: ac51e87c81c4b154ab5d9b94f75c8173, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1561059281, guid: ac51e87c81c4b154ab5d9b94f75c8173, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2256973660511910471, guid: ac51e87c81c4b154ab5d9b94f75c8173, type: 3}
       propertyPath: jumpMax
       value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 2256973660511910471, guid: ac51e87c81c4b154ab5d9b94f75c8173, type: 3}
+      propertyPath: chargeTime
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7522718703201083484, guid: ac51e87c81c4b154ab5d9b94f75c8173, type: 3}
+      propertyPath: chargeTime
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8542444690092807664, guid: ac51e87c81c4b154ab5d9b94f75c8173, type: 3}
       propertyPath: owlJump
@@ -6556,17 +6555,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8542444690092807665, guid: ac51e87c81c4b154ab5d9b94f75c8173, type: 3}
   m_PrefabInstance: {fileID: 1714435816}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1714435820 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8542444690092807664, guid: ac51e87c81c4b154ab5d9b94f75c8173, type: 3}
-  m_PrefabInstance: {fileID: 1714435816}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af27594396b074ecc9aec0a6072dd64c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1733629834
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6746,7 +6734,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a3df9203876c4165be1474b87d7af52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pm: {fileID: 1714435820}
   dialogue: 
   speed: 0.03
   character: 
@@ -6927,7 +6914,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a3df9203876c4165be1474b87d7af52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pm: {fileID: 1714435820}
   dialogue: 
   speed: 0.03
   character: 
@@ -7100,7 +7086,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7762238, y: 1}
+    m_SensorSize: {x: 1.7770083, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
