@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3574909878837288783}
+  - component: {fileID: 7601014323356321357}
   - component: {fileID: 3574909878837288782}
   - component: {fileID: 3574909878837288769}
   - component: {fileID: 3574909878837288768}
@@ -35,6 +36,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7601014323356321357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3574909878837288771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4703949600fdb477fb3d69e830448618, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  form: turtle
+  canWalk: 0
+  speed: 0
+  pause: 0
+  timer: 0
+  rightEnd: {x: 0, y: 0}
+  leftEnd: {x: 0, y: 0}
+  goingToRight: 1
 --- !u!70 &3574909878837288782
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -134,7 +155,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 13db21c70c076f44586c105de22818fa, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

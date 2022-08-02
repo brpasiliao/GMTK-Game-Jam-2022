@@ -30,10 +30,7 @@ public class Rabbit : MonoBehaviour {
         if (Input.GetKey (KeyCode.RightArrow) || Input.GetKey (KeyCode.D)) 
             moveVelocity = currentSpeed;
 
-        if (player.isHit) {
-            if (player.rb.velocity.x < 0) moveVelocity = -5;
-            else moveVelocity = 5;
-        }
+        if (player.isHit) moveVelocity = -5 * player.facing;
 
         player.rb.velocity = new Vector2(moveVelocity, player.rb.velocity.y);
     }

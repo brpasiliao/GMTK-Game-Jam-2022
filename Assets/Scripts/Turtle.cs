@@ -23,7 +23,7 @@ public class Turtle : MonoBehaviour {
     public bool isDashing = false;
     public bool isSliding = false;
     public bool isCharging = false;
-    public int facing = 1;
+    int direction = 1;
 
     private void OnEnable() {
         currentSpeed = speed;
@@ -37,57 +37,74 @@ public class Turtle : MonoBehaviour {
         if (!(isDashing || isSliding)) {
             if (Input.GetKey (KeyCode.LeftArrow) || Input.GetKey (KeyCode.A)) {
                 moveVelocity = -currentSpeed;
-                facing = -1;
+                direction = -1;
             }
             if (Input.GetKey (KeyCode.RightArrow) || Input.GetKey (KeyCode.D)) {
                 moveVelocity = currentSpeed;
-                facing = 1;
+                direction = 1;
             }
+
         } else {
             if (isSliding) {
                 if (Input.GetKey (KeyCode.LeftArrow) || Input.GetKey (KeyCode.A)) {
-                    if (facing == 1) slowDown *= slowDown2;
+                    if (direction == 1) slowDown *= slowDown2;
                     else slowDown = 0.05f;
                 } 
                 if (Input.GetKey (KeyCode.RightArrow) || Input.GetKey (KeyCode.D)) {
-                    if (facing == -1) slowDown *= slowDown2;
+                    if (direction == -1) slowDown *= slowDown2;
                     else slowDown = 0.05f;
                 }
                 if (Input.GetKeyUp (KeyCode.LeftArrow) || Input.GetKeyUp (KeyCode.A) || 
-                    Input.GetKeyUp (KeyCode.LeftArrow) || Input.GetKeyUp (KeyCode.A))
+                    Input.GetKeyUp (KeyCode.RightArrow) || Input.GetKeyUp (KeyCode.D))
                     slowDown = 0.1f;
             }
+        }
+
+        if (player.isHit) {
+            moveVelocity = -5 * player.facing;
+
+            isDashing = false;
+            isSliding = false;
+
+            slideTimer = 0f;
+            coolDownTimer = 0f;
+            slowDown = 0.1f;
+            currentSpeed = speed;
+
+            GetComponent<SpriteRenderer>().enabled = true;
         }
 
         player.rb.velocity = new Vector2(moveVelocity, player.rb.velocity.y);
     }
     
     private void Special() {
-        if (Input.GetKeyDown(KeyCode.Space)) {
-            isCharging = true;
-            chargeTimer = 0;
-            currentSpeed = 0;
-            GetComponent<SpriteRenderer>().enabled = false;
-            GetComponent<AudioSource>().Play();
-        }
+        if (!(isDashing || isSliding)) {
+            if (Input.GetKeyDown(KeyCode.Space)) {
+                isCharging = true;
+                chargeTimer = 0;
+                currentSpeed = 0;
+                GetComponent<SpriteRenderer>().enabled = false;
+                GetComponent<AudioSource>().Play();
+            }
 
-        if (Input.GetKey(KeyCode.Space)) {
-            chargeTimer += Time.deltaTime;
-        }
+            if (Input.GetKey(KeyCode.Space)) {
+                chargeTimer += Time.deltaTime;
+            }
 
-        if (Input.GetKeyUp(KeyCode.Space)) {
-            isCharging = false;
-            GetComponent<AudioSource>().Stop();
+            if (Input.GetKeyUp(KeyCode.Space)) {
+                isCharging = false;
+                GetComponent<AudioSource>().Stop();
 
-            // 4 ; 0.41 | else 3,10 ; 0.205, 0.67
-            if (chargeTimer > chargeTime) 
-                isDashing = true;
+                // 4 ; 0.41 | else 3,10 ; 0.205, 0.67
+                if (chargeTimer > chargeTime) 
+                    isDashing = true;
+            }
         }
 
         if (isDashing) {
             if (slideTimer < slideTime) {
                 currentSpeed = speedSlide;
-                moveVelocity = currentSpeed * facing;
+                moveVelocity = currentSpeed * direction;
                 slideTimer += Time.deltaTime;
             } else {
                 isDashing = false;
@@ -99,7 +116,7 @@ public class Turtle : MonoBehaviour {
         if (isSliding) {
             if (currentSpeed > 1f) {
                 currentSpeed -= slowDown;
-                moveVelocity = currentSpeed * facing;
+                moveVelocity = currentSpeed * direction;
             } else {
                 if (coolDownTimer < coolDown) {
                     currentSpeed = 0;

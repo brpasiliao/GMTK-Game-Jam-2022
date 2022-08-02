@@ -32,6 +32,8 @@ public class Owl : MonoBehaviour {
         if (Input.GetKey (KeyCode.RightArrow) || Input.GetKey (KeyCode.D))
             moveVelocity = currentSpeed;
 
+        if (player.isHit) moveVelocity = -5 * player.facing;
+
         player.rb.velocity = new Vector2(moveVelocity, player.rb.velocity.y);
     }
 

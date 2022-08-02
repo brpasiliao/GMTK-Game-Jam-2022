@@ -6462,7 +6462,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1561059281, guid: ac51e87c81c4b154ab5d9b94f75c8173, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2256973660511910471, guid: ac51e87c81c4b154ab5d9b94f75c8173, type: 3}
       propertyPath: jumpMax
@@ -6548,7 +6548,8 @@ PrefabInstance:
       propertyPath: endGravity
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8542444690092807679, guid: ac51e87c81c4b154ab5d9b94f75c8173, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ac51e87c81c4b154ab5d9b94f75c8173, type: 3}
 --- !u!4 &1714435817 stripped
 Transform:
@@ -7086,7 +7087,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7770083, y: 1}
+    m_SensorSize: {x: 1.7783251, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -7118,6 +7119,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7725095229508351287, guid: 51e3a4b657262b145922b73a76d0a3f9, type: 3}
+      propertyPath: pause
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7725095229508351287, guid: 51e3a4b657262b145922b73a76d0a3f9, type: 3}
+      propertyPath: speed
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 7725095229508351287, guid: 51e3a4b657262b145922b73a76d0a3f9, type: 3}
+      propertyPath: canWalk
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7725095229508351287, guid: 51e3a4b657262b145922b73a76d0a3f9, type: 3}
+      propertyPath: leftEnd.x
+      value: 41
+      objectReference: {fileID: 0}
+    - target: {fileID: 7725095229508351287, guid: 51e3a4b657262b145922b73a76d0a3f9, type: 3}
+      propertyPath: leftEnd.y
+      value: -17.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 7725095229508351287, guid: 51e3a4b657262b145922b73a76d0a3f9, type: 3}
+      propertyPath: rightEnd.x
+      value: 43.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 7725095229508351287, guid: 51e3a4b657262b145922b73a76d0a3f9, type: 3}
+      propertyPath: rightEnd.y
+      value: -17.18
+      objectReference: {fileID: 0}
     - target: {fileID: 7811063242349711460, guid: 51e3a4b657262b145922b73a76d0a3f9, type: 3}
       propertyPath: m_Name
       value: Walkshroom

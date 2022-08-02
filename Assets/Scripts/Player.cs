@@ -17,6 +17,7 @@ public class Player : MonoBehaviour {
     public Vector2 lastGrounded;
     public bool isGrounded = true;
 
+    public int facing = 1;
     public bool isHit = false;
     public bool isSafe = false;
     public float safeTime = 1f;
@@ -55,11 +56,10 @@ public class Player : MonoBehaviour {
         }
         if (collision.gameObject.tag == "Wall" && shell.activeSelf && 
             (shell.GetComponent<Turtle>().isDashing || shell.GetComponent<Turtle>().isSliding))
-            shell.GetComponent<Turtle>().facing = -shell.GetComponent<Turtle>().facing;
+            facing = -facing;
 
-        // if (!isSafe && collision.gameObject.tag == "Enemy")
         if (collision.gameObject.tag == "Enemy")
-            GetHit(collision.gameObject);
+            EnemyContact(collision.gameObject);
     }
 
     void OnCollisionExit2D(Collision2D collision) {
@@ -71,27 +71,26 @@ public class Player : MonoBehaviour {
         if (collider.gameObject.name == "Fell") {
             transform.position = lastGrounded;
         }
-
-        // if (collider.gameObject.name == "EndLevel") {
-        //     rb.gravityScale = 0;
-        //     rb.velocity = new Vector2 (rb.velocity.x, endVelocity);
-        // }
-        // if (collider.gameObject.name == "NextLevel" && SceneManager.GetActiveScene().name == "Tutorial") {
-        //     ChangeScene("Level 1");
-        // }
-        // if (collider.gameObject.name == "NextLevel" && SceneManager.GetActiveScene().name == "Level 1") {
-        //     ChangeScene("End");
-        // }
     }
 
-    void GetHit(GameObject enemy) {
-        // knockback
-        // currentForm.Knockback();
-        isSafe = true;
-        isHit = true;
-        rb.velocity = new Vector2(rb.velocity.x, 20);
+    void EnemyContact(GameObject enemy) {
+        if ((ears.activeSelf && rb.velocity.y < 0f) ||
+            (shell.activeSelf && shell.GetComponent<Turtle>().isDashing) ||
+            (wings.activeSelf && wings.GetComponent<Owl>().flaps > 0 && Input.GetKeyDown(KeyCode.Space)))
+            enemy.SetActive(false);
 
-        Debug.Log("ouch");
+        else if (!isSafe) {
+            isSafe = true;
+
+            if (!isHit) {
+                rb.velocity = new Vector2(rb.velocity.x, 20);
+                isHit = true;
+
+                ChangeCharacter(enemy.GetComponent<Enemy>().form);
+                Debug.Log("ouch");
+            }
+        }
+
         // change character
         // ChangeCharacter(enemy.GetComponent<Enemy>().form);
     }
@@ -114,19 +113,19 @@ public class Player : MonoBehaviour {
     }
 
     void ChangeCharacter(string c) {
-        if (c == "rabbit") {
+        if (c == "rabbit" && !ears.activeSelf) {
             wings.SetActive(false);
             shell.SetActive(false);
             ears.SetActive(true);
             ears.GetComponent<SpriteRenderer>().enabled = true;
             currentForm = ears.GetComponent<Rabbit>();
-        } else if (c == "turtle") {
+        } else if (c == "turtle" && !shell.activeSelf) {
             wings.SetActive(false);
             shell.SetActive(true);
             ears.SetActive(false);
             shell.GetComponent<SpriteRenderer>().enabled = true;
             currentForm = shell.GetComponent<Turtle>();
-        } else if (c == "owl") {
+        } else if (c == "owl" && !wings.activeSelf) {
             wings.SetActive(true);
             shell.SetActive(false);
             ears.SetActive(false);
@@ -140,12 +139,16 @@ public class Player : MonoBehaviour {
     }
 
     void PlayAnimations() {
-        if (Input.GetKey (KeyCode.LeftArrow) || Input.GetKey (KeyCode.A))
+        if (Input.GetKey (KeyCode.LeftArrow) || Input.GetKey (KeyCode.A)) {
             transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
-        else if (Input.GetKey (KeyCode.RightArrow) || Input.GetKey (KeyCode.D))
+            facing = -1;
+        }
+        else if (Input.GetKey (KeyCode.RightArrow) || Input.GetKey (KeyCode.D)) {
             transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
+            facing = 1;
+        }
 
-        if (shell.activeSelf && Input.GetKeyDown(KeyCode.Space))
+        if (shell.activeSelf && Input.GetKeyDown(KeyCode.Space) && !(shell.GetComponent<Turtle>().isDashing || shell.GetComponent<Turtle>().isSliding))
             GetComponent<Animator>().Play("Shell_Into");
         else if (shell.activeSelf && shell.GetComponent<Turtle>().isCharging)
             GetComponent<Animator>().Play("Shell_Rev");
