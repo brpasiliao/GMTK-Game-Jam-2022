@@ -6409,7 +6409,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.85170746, y: 1.3633118}
+  m_Offset: {x: 6.4717712, y: 1.3633118}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -6420,7 +6420,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 11.816666, y: 5.8558884}
+  m_Size: {x: 39.282516, y: 5.8558884}
   m_EdgeRadius: 0
 --- !u!4 &1622210896
 Transform:
@@ -6460,21 +6460,9 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1561059281, guid: ac51e87c81c4b154ab5d9b94f75c8173, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2256973660511910471, guid: ac51e87c81c4b154ab5d9b94f75c8173, type: 3}
       propertyPath: jumpMax
       value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 2256973660511910471, guid: ac51e87c81c4b154ab5d9b94f75c8173, type: 3}
-      propertyPath: chargeTime
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7522718703201083484, guid: ac51e87c81c4b154ab5d9b94f75c8173, type: 3}
-      propertyPath: chargeTime
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8542444690092807664, guid: ac51e87c81c4b154ab5d9b94f75c8173, type: 3}
       propertyPath: owlJump
@@ -6655,7 +6643,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.16698837, y: 0}
+  m_Offset: {x: 5.5936337, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -6666,7 +6654,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 14.915581, y: 1}
+  m_Size: {x: 76.80635, y: 1}
   m_EdgeRadius: 0
 --- !u!4 &1759597323
 Transform:
@@ -7087,7 +7075,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7783251, y: 1}
+    m_SensorSize: {x: 1.7761627, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

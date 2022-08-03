@@ -4,15 +4,14 @@ using UnityEngine.SceneManagement;
 using System;
 
 public class Player : MonoBehaviour {
-    // public delegate void OnGameOver();
-    // public static event OnGameOver GameOver;
+    public delegate void OnEndLevel();
+    public static event OnEndLevel EndLevel;
 
     public Rigidbody2D rb;
     public GameObject wings;
     public GameObject shell;
     public GameObject ears;
     public GameObject poof;
-    private Component currentForm;
 
     public Vector2 lastGrounded;
     public bool isGrounded = true;
@@ -22,8 +21,6 @@ public class Player : MonoBehaviour {
     public bool isSafe = false;
     public float safeTime = 1f;
     float safeTimer = 0f;
-
-    // public float endVelocity;
 
     private void OnEnable() {
         Narration.Narrate += ChangeCharacter;
@@ -71,6 +68,14 @@ public class Player : MonoBehaviour {
         if (collider.gameObject.name == "Fell") {
             transform.position = lastGrounded;
         }
+
+        if (collider.gameObject.name == "EndLevel") {
+            rb.gravityScale = 0;
+            rb.velocity = new Vector2 (rb.velocity.x, -3);
+        }
+        if (collider.gameObject.name == "NextLevel") {
+            EndLevel?.Invoke();
+        }
     }
 
     void EnemyContact(GameObject enemy) {
@@ -87,12 +92,8 @@ public class Player : MonoBehaviour {
                 isHit = true;
 
                 ChangeCharacter(enemy.GetComponent<Enemy>().form);
-                Debug.Log("ouch");
             }
         }
-
-        // change character
-        // ChangeCharacter(enemy.GetComponent<Enemy>().form);
     }
 
     void CheckSafe() {
@@ -118,19 +119,16 @@ public class Player : MonoBehaviour {
             shell.SetActive(false);
             ears.SetActive(true);
             ears.GetComponent<SpriteRenderer>().enabled = true;
-            currentForm = ears.GetComponent<Rabbit>();
         } else if (c == "turtle" && !shell.activeSelf) {
             wings.SetActive(false);
             shell.SetActive(true);
             ears.SetActive(false);
             shell.GetComponent<SpriteRenderer>().enabled = true;
-            currentForm = shell.GetComponent<Turtle>();
         } else if (c == "owl" && !wings.activeSelf) {
             wings.SetActive(true);
             shell.SetActive(false);
             ears.SetActive(false);
             wings.GetComponent<SpriteRenderer>().enabled = true;
-            currentForm = wings.GetComponent<Owl>();
         }
 
         // poof.SetActive(true);

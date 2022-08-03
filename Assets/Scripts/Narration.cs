@@ -8,7 +8,6 @@ public class Narration : MonoBehaviour {
     public static event OnNarrate Narrate;
 
     TMPro.TextMeshProUGUI textBox;
-    // public PlayerMovement pm;
 
     public string dialogue;
     public float speed;
@@ -21,15 +20,12 @@ public class Narration : MonoBehaviour {
         textBox.text = "";
     }
 
-    void Update() {}
-
     void OnTriggerEnter2D(Collider2D collider) {
         if (!done && collider.gameObject.name == "Player") {
             StartCoroutine("DisplayMessage", dialogue);
             done = true;
         }
         if (character != "") {
-            // pm.ChangeCharacter(character);
             Narrate?.Invoke(character);
         }
     }
@@ -43,14 +39,3 @@ public class Narration : MonoBehaviour {
         }
     }
 }
-
-
-
-// start, 
-// tutorial, (make collider at pit: next scene, on level complete dialogue)
-// black screen
-// level 1, 
-// end
-
-// death = change character
-// music
