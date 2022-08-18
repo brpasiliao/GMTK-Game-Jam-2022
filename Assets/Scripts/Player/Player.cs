@@ -52,7 +52,7 @@ public class Player : MonoBehaviour {
         }
         if (collision.gameObject.tag == "Wall" && shell.activeSelf && 
             (shell.GetComponent<Turtle>().isDashing || shell.GetComponent<Turtle>().isSliding))
-            facing = -facing;
+            shell.GetComponent<Turtle>().direction = -shell.GetComponent<Turtle>().direction;
 
         if (collision.gameObject.tag == "Enemy")
             EnemyContact(collision.gameObject);

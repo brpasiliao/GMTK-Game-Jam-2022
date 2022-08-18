@@ -22,7 +22,7 @@ public class Turtle : MonoBehaviour {
     public bool isDashing = false;
     public bool isSliding = false;
     public bool isCharging = false;
-    int direction = 1;
+    public int direction = 1;
 
     private void OnEnable() {
         currentSpeed = speed;
