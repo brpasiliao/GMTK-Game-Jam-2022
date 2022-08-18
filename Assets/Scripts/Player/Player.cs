@@ -78,6 +78,7 @@ public class Player : MonoBehaviour {
     }
 
     void EnemyContact(GameObject enemy) {
+        // affecting enemy object
         if ((ears.activeSelf && rb.velocity.y < 0f) ||
             (shell.activeSelf && shell.GetComponent<Turtle>().isDashing) ||
             (wings.activeSelf && wings.GetComponent<Owl>().flaps > 0 && Input.GetKeyDown(KeyCode.Space)))
@@ -130,6 +131,7 @@ public class Player : MonoBehaviour {
             wings.GetComponent<SpriteRenderer>().enabled = true;
         }
 
+        // make to coroutine
         // poof.SetActive(true);
         // poof.GetComponent<Animator>().Play("Poof");
         // poof.SetActive(false);
