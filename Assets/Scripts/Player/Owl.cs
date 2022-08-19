@@ -16,6 +16,14 @@ public class Owl : MonoBehaviour {
     public float fallFlight;
     public int flaps = 4;
 
+    // BoxCollider2D playerCollider;
+    // Vector2 colliderSize;
+
+    // private void Start() {
+    //     playerCollider = player.GetComponent<BoxCollider2D>();
+    //     colliderSize = playerCollider.size;
+    // }
+
     private void OnEnable() {
         currentSpeed = speed;
         currentJump = jump;
@@ -51,10 +59,15 @@ public class Owl : MonoBehaviour {
                     currentJump = jumpFlight;
                     player.rb.gravityScale = fallFlight;
                     flaps--;
+
+                    // playerCollider.size = new Vector2 (playerCollider.size.x * 1.5f, playerCollider.size.y * 1.5f);
                 }
 
                 player.rb.velocity = new Vector2 (player.rb.velocity.x, currentJump);
             }
+        }
+        if (Input.GetKeyUp(KeyCode.Space)) {
+            // playerCollider.size = colliderSize;
         }
 
         if (player.rb.velocity.y > 0) 
