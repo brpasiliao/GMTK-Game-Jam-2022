@@ -37,9 +37,19 @@ public class Player : MonoBehaviour {
     }
 
     void Update () {
-        if (isGrounded && rb.velocity.y == 0) lastGrounded = transform.position;
-        CheckSafe();
+        if (isGrounded && rb.velocity.y == 0 && rb.velocity.x == 0) lastGrounded = transform.position;
+
+        if (Input.GetKey (KeyCode.LeftArrow) || Input.GetKey (KeyCode.A)) {
+            transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
+            facing = -1;
+        }
+        else if (Input.GetKey (KeyCode.RightArrow) || Input.GetKey (KeyCode.D)) {
+            transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
+            facing = 1;
+        }
+
         PlayAnimations();
+        CheckSafe();
 
         DevSecret();
     }
@@ -52,7 +62,7 @@ public class Player : MonoBehaviour {
         }
         if (collision.gameObject.tag == "Wall" && shell.activeSelf && 
             (shell.GetComponent<Turtle>().isDashing || shell.GetComponent<Turtle>().isSliding))
-            facing = -facing;
+            shell.GetComponent<Turtle>().direction = -shell.GetComponent<Turtle>().direction;
 
         if (collision.gameObject.tag == "Enemy")
             EnemyContact(collision.gameObject);
@@ -66,6 +76,7 @@ public class Player : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D collider) {
         if (collider.gameObject.name == "Fell") {
             transform.position = lastGrounded;
+            rb.velocity = new Vector2 (0, 0);
         }
 
         if (collider.gameObject.name == "EndLevel") {
@@ -78,6 +89,7 @@ public class Player : MonoBehaviour {
     }
 
     void EnemyContact(GameObject enemy) {
+        // affecting enemy object
         if ((ears.activeSelf && rb.velocity.y < 0f) ||
             (shell.activeSelf && shell.GetComponent<Turtle>().isDashing) ||
             (wings.activeSelf && wings.GetComponent<Owl>().flaps > 0 && Input.GetKeyDown(KeyCode.Space)))
@@ -130,21 +142,10 @@ public class Player : MonoBehaviour {
             wings.GetComponent<SpriteRenderer>().enabled = true;
         }
 
-        // poof.SetActive(true);
-        // poof.GetComponent<Animator>().Play("Poof");
-        // poof.SetActive(false);
+        StartCoroutine("PlayPoof");
     }
 
     void PlayAnimations() {
-        if (Input.GetKey (KeyCode.LeftArrow) || Input.GetKey (KeyCode.A)) {
-            transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
-            facing = -1;
-        }
-        else if (Input.GetKey (KeyCode.RightArrow) || Input.GetKey (KeyCode.D)) {
-            transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
-            facing = 1;
-        }
-
         if (shell.activeSelf && Input.GetKeyDown(KeyCode.Space) && !(shell.GetComponent<Turtle>().isDashing || shell.GetComponent<Turtle>().isSliding))
             GetComponent<Animator>().Play("Shell_Into");
         else if (shell.activeSelf && shell.GetComponent<Turtle>().isCharging)
@@ -160,5 +161,12 @@ public class Player : MonoBehaviour {
         else if (!isGrounded && rb.velocity.y < -0.001f) 
             GetComponent<Animator>().Play("Jump_Down");
         else GetComponent<Animator>().Play("Idle");
+    }
+
+    IEnumerator PlayPoof() {
+        poof.SetActive(true);
+        poof.GetComponent<Animator>().Play("Poof", -1, 0f);
+        yield return new WaitForSeconds(poof.GetComponent<Animator>().runtimeAnimatorController.animationClips[0].length);
+        poof.SetActive(false);
     }
 }

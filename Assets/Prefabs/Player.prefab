@@ -58,6 +58,7 @@ MonoBehaviour:
   isDashing: 0
   isSliding: 0
   isCharging: 0
+  direction: 1
 --- !u!95 &330545222
 Animator:
   serializedVersion: 4
@@ -868,6 +869,7 @@ GameObject:
   - component: {fileID: 8542444690092807665}
   - component: {fileID: 8542444690092807664}
   - component: {fileID: 8542444690092807668}
+  - component: {fileID: 7874150162583003099}
   - component: {fileID: 8542444690092807678}
   - component: {fileID: 1250193153}
   m_Layer: 7
@@ -913,7 +915,7 @@ MonoBehaviour:
   wings: {fileID: 1027633113}
   shell: {fileID: 330545219}
   ears: {fileID: 1561059279}
-  poof: {fileID: 0}
+  poof: {fileID: 1238770554}
   lastGrounded: {x: 0, y: 0}
   isGrounded: 1
   facing: 1
@@ -941,8 +943,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!70 &8542444690092807678
-CapsuleCollider2D:
+--- !u!61 &7874150162583003099
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -950,12 +952,38 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 8542444690092807669}
   m_Enabled: 1
   m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.05513382, y: -0.08043766}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.3779068, y: 2.7807217}
+  m_EdgeRadius: 0
+--- !u!70 &8542444690092807678
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8542444690092807669}
+  m_Enabled: 0
+  m_Density: 1
   m_Material: {fileID: 6200000, guid: aac13676a4da749aba836fb7049f8810, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.017911911, y: -0.056081533}
-  m_Size: {x: 1, y: 2.8733358}
+  m_Offset: {x: 0.05737686, y: -0.056081533}
+  m_Size: {x: 1.2618752, y: 2.8733358}
   m_Direction: 0
 --- !u!95 &1250193153
 Animator:
