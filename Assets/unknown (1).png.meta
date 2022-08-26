@@ -760,7 +760,7 @@ TextureImporter:
         - {x: -32, y: -32}
         - {x: 32, y: -32}
         - {x: 32, y: 28}
-        - {x: 24, y: 28}
+        - {x: 32, y: 32}
         - {x: -32, y: 0}
       tessellationDetail: 0
       bones: []
@@ -783,12 +783,12 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: -24, y: 28}
-        - {x: -32, y: 28}
+      - - {x: -32, y: 32}
+        - {x: -32, y: 32}
         - {x: -32, y: -32}
         - {x: 32, y: -32}
         - {x: 32, y: 0}
-        - {x: -24, y: 28}
+        - {x: -32, y: 32}
       tessellationDetail: 0
       bones: []
       spriteID: 93711ed67b4baa14588cc4cad3d4dae7
@@ -1237,12 +1237,12 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: 16, y: 28}
+      - - {x: 32, y: 32}
         - {x: -32, y: 16}
         - {x: -32, y: 16}
         - {x: -32, y: -32}
         - {x: 32, y: -32}
-        - {x: 32, y: 28}
+        - {x: 32, y: 32}
       tessellationDetail: 0
       bones: []
       spriteID: 5518d7784fcd68a438aca70c80735afe
@@ -1264,7 +1264,7 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: -32, y: 28}
+      - - {x: -32, y: 32}
         - {x: -32, y: -32}
         - {x: 32, y: -32}
         - {x: 32, y: 16}
@@ -1729,7 +1729,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      unknown (1)_27: 1401075891
+      unknown (1)_5: -1597950792
       unknown (1)_2: 961889694
       unknown (1)_11: -1142780140
       unknown (1)_13: 1096338712
@@ -1759,11 +1759,11 @@ TextureImporter:
       unknown (1)_42: -61929870
       unknown (1)_40: -1844414291
       unknown (1)_17: 1602696432
-      unknown (1)_18: -271531350
+      unknown (1)_41: 725100102
       unknown (1)_45: 360971899
       unknown (1)_26: -1065207730
       unknown (1)_31: -1333101350
-      unknown (1)_41: 725100102
+      unknown (1)_18: -271531350
       unknown (1)_8: 791903285
       unknown (1)_0: -2063308832
       unknown (1)_9: 1722271096
@@ -1789,7 +1789,7 @@ TextureImporter:
       unknown (1)_34: -1896050944
       unknown (1)_20: -1589182676
       unknown (1)_52: 1059225859
-      unknown (1)_5: -1597950792
+      unknown (1)_27: 1401075891
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
