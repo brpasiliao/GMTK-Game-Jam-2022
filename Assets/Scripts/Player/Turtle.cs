@@ -61,16 +61,7 @@ public class Turtle : MonoBehaviour {
 
         if (player.isHit) {
             moveVelocity = -5 * player.facing;
-
-            isDashing = false;
-            isSliding = false;
-
-            slideTimer = 0f;
-            coolDownTimer = 0f;
-            slowDown = 0.1f;
-            currentSpeed = speed;
-
-            GetComponent<SpriteRenderer>().enabled = true;
+            ResetValues();
         }
 
         player.rb.velocity = new Vector2(moveVelocity, player.rb.velocity.y);
@@ -94,9 +85,8 @@ public class Turtle : MonoBehaviour {
                 isCharging = false;
                 GetComponent<AudioSource>().Stop();
 
-                // 4 ; 0.41 | else 3,10 ; 0.205, 0.67
-                if (chargeTimer > chargeTime) 
-                    isDashing = true;
+                if (chargeTimer > chargeTime) isDashing = true;
+                else ResetValues();
             }
         }
 
@@ -130,5 +120,17 @@ public class Turtle : MonoBehaviour {
                 }
             }
         }
+    }
+
+    private void ResetValues() {
+        isDashing = false;
+        isSliding = false;
+
+        slideTimer = 0f;
+        coolDownTimer = 0f;
+        slowDown = 0.1f;
+        currentSpeed = speed;
+
+        GetComponent<SpriteRenderer>().enabled = true;
     }
 }
