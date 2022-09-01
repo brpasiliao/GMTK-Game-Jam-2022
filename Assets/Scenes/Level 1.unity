@@ -31911,8 +31911,20 @@ PrefabInstance:
       value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 7522718703201083484, guid: ac51e87c81c4b154ab5d9b94f75c8173, type: 3}
+      propertyPath: coolDown
+      value: 0.31
+      objectReference: {fileID: 0}
+    - target: {fileID: 7522718703201083484, guid: ac51e87c81c4b154ab5d9b94f75c8173, type: 3}
+      propertyPath: slideTime
+      value: 0.82
+      objectReference: {fileID: 0}
+    - target: {fileID: 7522718703201083484, guid: ac51e87c81c4b154ab5d9b94f75c8173, type: 3}
+      propertyPath: slowDown2
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7522718703201083484, guid: ac51e87c81c4b154ab5d9b94f75c8173, type: 3}
       propertyPath: speedSlide
-      value: 30
+      value: 65
       objectReference: {fileID: 0}
     - target: {fileID: 8542444690092807664, guid: ac51e87c81c4b154ab5d9b94f75c8173, type: 3}
       propertyPath: owlSpeed
@@ -32495,7 +32507,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7903225, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
