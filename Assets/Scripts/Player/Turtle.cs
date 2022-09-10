@@ -1,12 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class Turtle : MonoBehaviour {
-    public Player player;
-
-    float moveVelocity;
-    float currentSpeed;
-
+public class Turtle : Player {
     public float speed;
     public float speedSlide;
     public float slideTime;
@@ -19,26 +14,29 @@ public class Turtle : MonoBehaviour {
     public float coolDown;
     float coolDownTimer;
 
-    public bool isDashing = false;
-    public bool isSliding = false;
-    public bool isCharging = false;
-    public int direction = 1;
+    private bool isDashing = false;
+    private bool isSliding = false;
+    private bool isCharging = false;
+    private int direction = 1;
+
+    // public AudioSource sfx;
 
     private void OnEnable() {
         currentSpeed = speed;
+        currentJump = 0;
     }
 
-    private void Update() {
-        moveVelocity = 0;
-
-        Special();
-
+    protected override void Move() {
         if (!(isDashing || isSliding)) {
             if (Input.GetKey (KeyCode.LeftArrow) || Input.GetKey (KeyCode.A)) {
+                transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
+                facing = -1;
                 moveVelocity = -currentSpeed;
                 direction = -1;
             }
             if (Input.GetKey (KeyCode.RightArrow) || Input.GetKey (KeyCode.D)) {
+                transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
+                facing = 1;
                 moveVelocity = currentSpeed;
                 direction = 1;
             }
@@ -59,22 +57,18 @@ public class Turtle : MonoBehaviour {
             }
         }
 
-        if (player.isHit) {
-            moveVelocity = -5 * player.facing;
-            ResetValues();
-        }
-
-        player.rb.velocity = new Vector2(moveVelocity, player.rb.velocity.y);
+        if (isHit) moveVelocity = -5 * facing;
     }
     
-    private void Special() {
+    protected override void Special() {
+        // Debug.Log("turtle special");
         if (!(isDashing || isSliding)) {
             if (Input.GetKeyDown(KeyCode.Space)) {
                 isCharging = true;
                 chargeTimer = 0;
                 currentSpeed = 0;
-                GetComponent<SpriteRenderer>().enabled = false;
-                GetComponent<AudioSource>().Play();
+                // GetComponent<SpriteRenderer>().enabled = false;
+                // sfx.Play();
             }
 
             if (Input.GetKey(KeyCode.Space)) {
@@ -83,7 +77,7 @@ public class Turtle : MonoBehaviour {
 
             if (Input.GetKeyUp(KeyCode.Space)) {
                 isCharging = false;
-                GetComponent<AudioSource>().Stop();
+                // sfx.Stop();
 
                 if (chargeTimer > chargeTime) isDashing = true;
                 else ResetValues();
@@ -111,8 +105,8 @@ public class Turtle : MonoBehaviour {
                     currentSpeed = 0;
                     coolDownTimer += Time.deltaTime;
                 } else {
-                    player.gameObject.GetComponent<Animator>().Play("Shell_Out"); //player
-                    GetComponent<SpriteRenderer>().enabled = true;
+                    // player.gameObject.GetComponent<Animator>().Play("Shell_Out"); //player
+                    // GetComponent<SpriteRenderer>().enabled = true;
                     coolDownTimer = 0f;
                     isSliding = false;
                     currentSpeed = speed;
@@ -122,7 +116,23 @@ public class Turtle : MonoBehaviour {
         }
     }
 
-    private void ResetValues() {
+    protected override void OnCollisionEnter2D(Collision2D collision) {
+        if (this.enabled) {
+            base.OnCollisionEnter2D(collision);
+
+            if (collision.gameObject.tag == "Wall" && (isDashing || isSliding))
+                direction = -direction;
+        }
+    }
+
+    protected override void EnemyContact(GameObject enemy) {
+        if (this.enabled) {
+            if (isDashing) enemy.SetActive(false);
+            else GetHurt(enemy);
+        }
+    }
+
+    protected override void ResetValues() {
         isDashing = false;
         isSliding = false;
 
@@ -131,6 +141,6 @@ public class Turtle : MonoBehaviour {
         slowDown = 0.1f;
         currentSpeed = speed;
 
-        GetComponent<SpriteRenderer>().enabled = true;
+        // GetComponent<SpriteRenderer>().enabled = true;
     }
 }

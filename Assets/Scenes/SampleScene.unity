@@ -2438,6 +2438,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8918739221517646862, guid: 90614d39ad752436ca8361cd7f02a971, type: 3}
+      propertyPath: form
+      value: rabbit
+      objectReference: {fileID: 0}
+    - target: {fileID: 8918739221517646862, guid: 90614d39ad752436ca8361cd7f02a971, type: 3}
       propertyPath: pause
       value: 3
       objectReference: {fileID: 0}

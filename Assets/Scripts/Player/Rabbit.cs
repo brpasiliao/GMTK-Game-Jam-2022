@@ -1,41 +1,23 @@
 using UnityEngine;
 using System.Collections;
 
-public class Rabbit : MonoBehaviour {
-    public Player player;
-
-    float moveVelocity;
-    float currentSpeed;
-    float currentJump;
-
+public class Rabbit : Player {
     public float speed;
     public float jump;
 
     public float chargeTime;
     float chargeTimer = 0;
 
+    // public AudioSource sfx;
+
     private void OnEnable() {
         currentSpeed = speed;
         currentJump = 0;
     }
 
-    private void Update() {
-        moveVelocity = 0;
-
-        Special();
-
-        if (Input.GetKey (KeyCode.LeftArrow) || Input.GetKey (KeyCode.A))
-            moveVelocity = -currentSpeed;
-        if (Input.GetKey (KeyCode.RightArrow) || Input.GetKey (KeyCode.D)) 
-            moveVelocity = currentSpeed;
-
-        if (player.isHit) moveVelocity = -5 * player.facing;
-
-        player.rb.velocity = new Vector2(moveVelocity, player.rb.velocity.y);
-    }
-
-    private void Special() {
-        if (player.isGrounded) {
+    protected override void Special() {
+        // Debug.Log("rabbit special");
+        if (isGrounded) {
             if (Input.GetKeyDown(KeyCode.Space)) {
                 chargeTimer = 0;
             }
@@ -48,12 +30,19 @@ public class Rabbit : MonoBehaviour {
                 if (chargeTimer > chargeTime) {
                     currentJump = jump;
 
-                    GetComponent<AudioSource>().Play();
+                    // sfx.Play();
                 }
 
-                player.rb.velocity = new Vector2 (player.rb.velocity.x, currentJump);
+                rb.velocity = new Vector2 (rb.velocity.x, currentJump);
                 currentJump = 0;
             }
+        }
+    }
+
+    protected override void EnemyContact(GameObject enemy) {
+        if (this.enabled) {
+            if (rb.velocity.y < 0f) enemy.SetActive(false);
+            else GetHurt(enemy);
         }
     }
 }

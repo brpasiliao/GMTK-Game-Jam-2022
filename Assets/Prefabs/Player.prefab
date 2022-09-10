@@ -47,7 +47,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 212df42c9403e4e6ba9fa79af95f0747, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 8542444690092807664}
+  rb: {fileID: 0}
+  poof: {fileID: 0}
+  safeTime: 1
   speed: 3
   speedSlide: 25
   slideTime: 0.41
@@ -55,10 +57,6 @@ MonoBehaviour:
   slowDown2: 1.05
   chargeTime: 0
   coolDown: 1
-  isDashing: 0
-  isSliding: 0
-  isCharging: 0
-  direction: 1
 --- !u!95 &330545222
 Animator:
   serializedVersion: 4
@@ -358,7 +356,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a911d28e13b9b4a82bd75e03d5aec090, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 8542444690092807664}
+  rb: {fileID: 0}
+  poof: {fileID: 0}
+  safeTime: 1
   speed: 6
   speedFlight: 8
   jump: 20
@@ -686,7 +686,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94fcacac6d0a547878a5a3c1a9ba5880, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 8542444690092807664}
+  rb: {fileID: 0}
+  poof: {fileID: 0}
+  safeTime: 1
   speed: 9
   jump: 40
   chargeTime: 0
@@ -868,6 +870,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8542444690092807665}
   - component: {fileID: 8542444690092807664}
+  - component: {fileID: 1263235877440194156}
+  - component: {fileID: 5184148286911704143}
+  - component: {fileID: 3144952208285291142}
   - component: {fileID: 8542444690092807668}
   - component: {fileID: 7874150162583003099}
   - component: {fileID: 8542444690092807678}
@@ -911,17 +916,71 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af27594396b074ecc9aec0a6072dd64c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 0}
-  wings: {fileID: 1027633113}
-  shell: {fileID: 330545219}
-  ears: {fileID: 1561059279}
+  rb: {fileID: 8542444690092807668}
   poof: {fileID: 1238770554}
-  lastGrounded: {x: 0, y: 0}
-  isGrounded: 1
-  facing: 1
-  isHit: 0
-  isSafe: 0
   safeTime: 1
+--- !u!114 &1263235877440194156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8542444690092807669}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94fcacac6d0a547878a5a3c1a9ba5880, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 8542444690092807668}
+  poof: {fileID: 1238770554}
+  safeTime: 1
+  speed: 9
+  jump: 40
+  chargeTime: 0
+--- !u!114 &5184148286911704143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8542444690092807669}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 212df42c9403e4e6ba9fa79af95f0747, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 8542444690092807668}
+  poof: {fileID: 1238770554}
+  safeTime: 1
+  speed: 3
+  speedSlide: 25
+  slideTime: 0.41
+  slowDown: 0.1
+  slowDown2: 1.05
+  chargeTime: 0
+  coolDown: 1
+--- !u!114 &3144952208285291142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8542444690092807669}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a911d28e13b9b4a82bd75e03d5aec090, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 8542444690092807668}
+  poof: {fileID: 1238770554}
+  safeTime: 1
+  speed: 6
+  speedFlight: 8
+  jump: 20
+  jumpFlight: 19
+  fall: 6
+  fallFlight: 10
+  flaps: 4
 --- !u!50 &8542444690092807668
 Rigidbody2D:
   serializedVersion: 4
