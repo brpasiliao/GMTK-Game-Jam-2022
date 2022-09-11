@@ -45,11 +45,11 @@ public class Owl : Player {
         //     GetComponent<Animator>().Play("Wing_Idle");
     }
 
-    protected override void EnemyContact(GameObject enemy) {
+    protected override void EnemyContact(Enemy enemy) {
         if (this.enabled) {
             if (flaps > 0 && Input.GetKeyDown(KeyCode.Space))
-                enemy.SetActive(false);
-            else GetHurt(enemy);
+                enemy.CallDieTemporarily();
+            else if (!isSafe) GetHurt(enemy);
         }
     }
 }

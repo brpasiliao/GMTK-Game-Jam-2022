@@ -2,7 +2,10 @@ using UnityEngine;
 using System.Collections;
 
 public class Enemy : MonoBehaviour {
+    public Collider2D collider;
+
     public string form;
+    public float deathDuration;
 
     public bool canWalk;
     public float speed;
@@ -20,29 +23,45 @@ public class Enemy : MonoBehaviour {
     }
 
     void Update() {
-        if (canWalk) {
-            if (goingToRight) {
-                if (transform.position.x < rightEnd.x)
-                    transform.position = Vector2.MoveTowards(transform.position, rightEnd, speed);
-                else {
-                    if (timer < pause) timer += Time.deltaTime;
-                    else {
-                        timer = 0f;
-                        goingToRight = false;
-                        transform.localScale = new Vector3(-ogScaleX, transform.localScale.y, transform.localScale.z);
-                    }
-                }
+        if (canWalk) Walk();
+    }
 
-            } else {
-                if (transform.position.x > leftEnd.x)
-                    transform.position = Vector2.MoveTowards(transform.position, leftEnd, speed);
+    public void CallDieTemporarily() {
+        StartCoroutine("DieTemporarily");
+    }
+
+    private IEnumerator DieTemporarily() {
+        Destroy(GetComponent<Rigidbody2D>());
+        collider.enabled = false;
+        GetComponent<SpriteRenderer>().color = new Color(1f,1f,1f,.3f);
+        yield return new WaitForSeconds(deathDuration);
+        gameObject.AddComponent<Rigidbody2D>();
+        collider.enabled = true;
+        GetComponent<SpriteRenderer>().color = new Color(1f,1f,1f,1f);
+    }
+
+    private void Walk() {
+        if (goingToRight) {
+            if (transform.position.x < rightEnd.x)
+                transform.position = Vector2.MoveTowards(transform.position, rightEnd, speed);
+            else {
+                if (timer < pause) timer += Time.deltaTime;
                 else {
-                    if (timer < pause) timer += Time.deltaTime;
-                    else {
-                        timer = 0f;
-                        goingToRight = true;
-                        transform.localScale = new Vector3(ogScaleX, transform.localScale.y, transform.localScale.z);
-                    }
+                    timer = 0f;
+                    goingToRight = false;
+                    transform.localScale = new Vector3(-ogScaleX, transform.localScale.y, transform.localScale.z);
+                }
+            }
+
+        } else {
+            if (transform.position.x > leftEnd.x)
+                transform.position = Vector2.MoveTowards(transform.position, leftEnd, speed);
+            else {
+                if (timer < pause) timer += Time.deltaTime;
+                else {
+                    timer = 0f;
+                    goingToRight = true;
+                    transform.localScale = new Vector3(ogScaleX, transform.localScale.y, transform.localScale.z);
                 }
             }
         }

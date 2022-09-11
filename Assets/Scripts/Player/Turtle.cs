@@ -30,13 +30,13 @@ public class Turtle : Player {
         if (!(isDashing || isSliding)) {
             if (Input.GetKey (KeyCode.LeftArrow) || Input.GetKey (KeyCode.A)) {
                 transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
-                facing = -1;
+                if (!isHit) facing = -1;
                 moveVelocity = -currentSpeed;
                 direction = -1;
             }
             if (Input.GetKey (KeyCode.RightArrow) || Input.GetKey (KeyCode.D)) {
                 transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
-                facing = 1;
+                if (!isHit) facing = 1;
                 moveVelocity = currentSpeed;
                 direction = 1;
             }
@@ -125,10 +125,11 @@ public class Turtle : Player {
         }
     }
 
-    protected override void EnemyContact(GameObject enemy) {
+    protected override void EnemyContact(Enemy enemy) {
         if (this.enabled) {
-            if (isDashing) enemy.SetActive(false);
-            else GetHurt(enemy);
+            if (isDashing || isSliding)
+                enemy.CallDieTemporarily();
+            else if (!isSafe) GetHurt(enemy);
         }
     }
 

@@ -17,8 +17,8 @@ public class Player : MonoBehaviour {
     protected bool isGrounded = true;
 
     protected int facing = 1;
-    protected bool isHit = false;
-    private bool isSafe = false;
+    protected static bool isHit = false;
+    protected bool isSafe = false;
     public float safeTime = 1f;
     private float safeTimer = 0f;
 
@@ -53,14 +53,15 @@ public class Player : MonoBehaviour {
     protected virtual void Move() {
         if (Input.GetKey (KeyCode.LeftArrow) || Input.GetKey (KeyCode.A)) {
             transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
-            facing = -1;
+            if (!isHit) facing = -1;
             moveVelocity = -currentSpeed;
         }
         if (Input.GetKey (KeyCode.RightArrow) || Input.GetKey (KeyCode.D)) {
             transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
-            facing = 1;
+            if (!isHit)facing = 1;
             moveVelocity = currentSpeed;
         }
+
 
         if (isHit) moveVelocity = -5 * facing;
     }
@@ -79,7 +80,7 @@ public class Player : MonoBehaviour {
         }
 
         if (collision.gameObject.tag == "Enemy")
-            EnemyContact(collision.gameObject);
+            EnemyContact(collision.gameObject.GetComponent<Enemy>());
     }
 
     void OnCollisionExit2D(Collision2D collision) {
@@ -103,20 +104,18 @@ public class Player : MonoBehaviour {
         }
     }
 
-    protected virtual void EnemyContact(GameObject enemy) {}
+    protected virtual void EnemyContact(Enemy enemy) {}
 
     protected virtual void ResetValues() {}
 
-    protected void GetHurt(GameObject enemy) {
-        Debug.Log("got hurt");
+    protected void GetHurt(Enemy enemy) {
         isSafe = true;
 
         if (!isHit) {
             rb.velocity = new Vector2(rb.velocity.x, 20);
             ResetValues();
             isHit = true;
-
-            // ChangeCharacter(enemy.GetComponent<Enemy>().form);
+            ChangeCharacter(enemy.form);
         }
     }
 

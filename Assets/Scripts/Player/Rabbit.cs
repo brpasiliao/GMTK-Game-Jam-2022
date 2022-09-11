@@ -39,10 +39,10 @@ public class Rabbit : Player {
         }
     }
 
-    protected override void EnemyContact(GameObject enemy) {
+    protected override void EnemyContact(Enemy enemy) {
         if (this.enabled) {
-            if (rb.velocity.y < 0f) enemy.SetActive(false);
-            else GetHurt(enemy);
+            if (rb.velocity.y < 0f) enemy.CallDieTemporarily();
+            else if (!isSafe) GetHurt(enemy);
         }
     }
 }
