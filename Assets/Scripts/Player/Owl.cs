@@ -6,33 +6,34 @@ public class Owl : Player {
     public float speedFlight;
     public float jump;
     public float jumpFlight;
-    public float fall;
-    public float fallFlight;
+    public float gravUp;
+    public float gravUpFlight;
     public int flaps = 4;
+    private int currentFlaps;
 
     // public AudioSource sfx;
 
     private void OnEnable() {
         currentSpeed = speed;
         currentJump = jump;
+        currentFlaps = flaps;
     }
 
     protected override void Special() {
-        // Debug.Log("owl special");
         if (Input.GetKeyDown(KeyCode.Space)) {
-            if (flaps > 0 || isGrounded) {
+            if (currentFlaps > 0 || isGrounded) {
                 // sfx.Play();
 
                 if (isGrounded) {
                     currentSpeed = speed;
                     currentJump = jump;
-                    rb.gravityScale = fall;
-                    flaps = 4;
+                    gravityUp = gravUp;
+                    currentFlaps = flaps;
                 } else {
                     currentSpeed = speedFlight;
                     currentJump = jumpFlight;
-                    rb.gravityScale = fallFlight;
-                    flaps--;
+                    gravityUp = gravUpFlight;
+                    currentFlaps--;
                 }
 
                 rb.velocity = new Vector2 (rb.velocity.x, currentJump);
@@ -47,8 +48,10 @@ public class Owl : Player {
 
     protected override void EnemyContact(Enemy enemy) {
         if (this.enabled) {
-            if (flaps > 0 && Input.GetKeyDown(KeyCode.Space))
+            if (currentFlaps > 0 && Input.GetKeyDown(KeyCode.Space)) {
                 enemy.CallDieTemporarily();
+                currentFlaps = flaps;
+            }
             else if (!isSafe) GetHurt(enemy);
         }
     }

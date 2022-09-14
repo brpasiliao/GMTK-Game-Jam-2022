@@ -18,6 +18,8 @@ public class Turtle : Player {
     private bool isDashing = false;
     private bool isSliding = false;
     private bool isCharging = false;
+    public bool enemyBoost;
+    private bool isBoosted = false;
     private int direction = 1;
 
     // public AudioSource sfx;
@@ -59,12 +61,6 @@ public class Turtle : Player {
         }
 
         if (isHit) moveVelocity = -hurtSpeed * facing;
-        // if (isBoosted) {
-        //     moveVelocity += speedBoost;
-        //     if (moveVelocity < isBoosted = false;
-        // }
-
-        // rb.velocity = new Vector2(moveVelocity, rb.velocity.y);
     }
     
     protected override void Special() {

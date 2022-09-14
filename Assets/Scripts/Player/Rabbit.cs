@@ -17,7 +17,6 @@ public class Rabbit : Player {
     }
 
     protected override void Special() {
-        // Debug.Log("rabbit special");
         if (isGrounded) {
             if (Input.GetKeyDown(KeyCode.Space)) {
                 chargeTimer = 0;

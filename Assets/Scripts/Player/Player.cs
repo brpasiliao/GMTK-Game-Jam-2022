@@ -13,7 +13,9 @@ public class Player : MonoBehaviour {
     protected float currentSpeed;
     protected float currentJump;
 
-    public bool enemyBoost;
+    public float gravityUp = 10;
+    public float gravityDown = 10;
+    protected float currentGravity;
 
     public float hurtSpeed = 5;
     public float hurtJump = 20;
@@ -23,7 +25,6 @@ public class Player : MonoBehaviour {
 
     protected int facing = 1;
     protected static bool isHit = false;
-    protected bool isBoosted = false;
     protected bool isSafe = false;
     public float safeTime = 1f;
     private float safeTimer = 0f;
@@ -50,6 +51,9 @@ public class Player : MonoBehaviour {
         Move();
         rb.velocity = new Vector2(moveVelocity, rb.velocity.y);
 
+        CheckGravity();
+        rb.gravityScale = currentGravity;
+
         PlayAnimations();
         CheckSafe();
 
@@ -72,6 +76,13 @@ public class Player : MonoBehaviour {
     }
 
     protected virtual void Special() {}
+
+    protected virtual void CheckGravity() {
+        if (rb.velocity.y > 0) currentGravity = gravityUp;
+        if (rb.velocity.y < 0) currentGravity = gravityDown;
+    }
+
+
 
 
 
