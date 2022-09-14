@@ -3,9 +3,9 @@ using System.Collections;
 
 public class Turtle : Player {
     public float speed;
-    public float speedSlide;
-    public float slideTime;
-    float slideTimer = 0;
+    public float speedDash;
+    public float dashTime;
+    float dashTimer = 0;
     
     public float slowDown; // natural slowdown
     public float slowDown2; // forced slowdown
@@ -18,6 +18,9 @@ public class Turtle : Player {
     private bool isSliding = false;
     private bool isCharging = false;
     private int direction = 1;
+
+    public bool enemyBoost;
+    public float speedBoost;
 
     // public AudioSource sfx;
 
@@ -57,11 +60,16 @@ public class Turtle : Player {
             }
         }
 
-        if (isHit) moveVelocity = -5 * facing;
+        if (isHit) moveVelocity = -hurtSpeed * facing;
+        // if (isBoosted) {
+        //     moveVelocity += speedBoost;
+        //     if (moveVelocity < isBoosted = false;
+        // }
+
+        // rb.velocity = new Vector2(moveVelocity, rb.velocity.y);
     }
     
     protected override void Special() {
-        // Debug.Log("turtle special");
         if (!(isDashing || isSliding)) {
             if (Input.GetKeyDown(KeyCode.Space)) {
                 isCharging = true;
@@ -85,19 +93,27 @@ public class Turtle : Player {
         }
 
         if (isDashing) {
-            if (slideTimer < slideTime) {
-                currentSpeed = speedSlide;
+            if (dashTimer < dashTime) {
+                currentSpeed = speedDash;
+                if (isBoosted) {
+                    currentSpeed += speedBoost;
+                    isBoosted = false;
+                }
                 moveVelocity = currentSpeed * direction;
-                slideTimer += Time.deltaTime;
+                dashTimer += Time.deltaTime;
             } else {
                 isDashing = false;
-                slideTimer = 0;
+                dashTimer = 0;
                 isSliding = true;
             }
         }
 
         if (isSliding) {
             if (currentSpeed > 1f) {
+                if (isBoosted) {
+                    currentSpeed += speedBoost;
+                    isBoosted = false;
+                }
                 currentSpeed -= slowDown;
                 moveVelocity = currentSpeed * direction;
             } else {
@@ -127,8 +143,10 @@ public class Turtle : Player {
 
     protected override void EnemyContact(Enemy enemy) {
         if (this.enabled) {
-            if (isDashing || isSliding)
+            if (isDashing || isSliding) {
                 enemy.CallDieTemporarily();
+                if (enemyBoost) isBoosted = true;
+            }
             else if (!isSafe) GetHurt(enemy);
         }
     }
@@ -137,7 +155,7 @@ public class Turtle : Player {
         isDashing = false;
         isSliding = false;
 
-        slideTimer = 0f;
+        dashTimer = 0f;
         coolDownTimer = 0f;
         slowDown = 0.1f;
         currentSpeed = speed;

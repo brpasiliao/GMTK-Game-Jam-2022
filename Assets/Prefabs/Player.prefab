@@ -198,7 +198,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8542444690092807665}
-  - component: {fileID: 8542444690092807664}
   - component: {fileID: 1263235877440194156}
   - component: {fileID: 5184148286911704143}
   - component: {fileID: 3144952208285291142}
@@ -230,7 +229,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8542444690092807664
+--- !u!114 &1263235877440194156
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -239,26 +238,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 8542444690092807669}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af27594396b074ecc9aec0a6072dd64c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 8542444690092807668}
-  poof: {fileID: 1238770554}
-  safeTime: 1
---- !u!114 &1263235877440194156
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8542444690092807669}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 94fcacac6d0a547878a5a3c1a9ba5880, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 8542444690092807668}
   poof: {fileID: 1238770554}
+  hurtSpeed: 5
+  hurtJump: 20
   safeTime: 1
   speed: 9
   jump: 40
@@ -277,14 +263,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 8542444690092807668}
   poof: {fileID: 1238770554}
+  hurtSpeed: 5
+  hurtJump: 20
   safeTime: 1
   speed: 3
-  speedSlide: 25
-  slideTime: 0.41
+  speedDash: 25
+  dashTime: 0.41
   slowDown: 0.1
   slowDown2: 1.05
   chargeTime: 0
   coolDown: 1
+  enemyBoost: 0
+  speedBoost: 0
 --- !u!114 &3144952208285291142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -299,6 +289,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 8542444690092807668}
   poof: {fileID: 1238770554}
+  hurtSpeed: 5
+  hurtJump: 20
   safeTime: 1
   speed: 6
   speedFlight: 8

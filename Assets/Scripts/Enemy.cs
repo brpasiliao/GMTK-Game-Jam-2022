@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 
 public class Enemy : MonoBehaviour {
-    public Collider2D collider;
+    public Collider2D enemyCollider;
 
     public string form;
     public float deathDuration;
@@ -32,11 +32,11 @@ public class Enemy : MonoBehaviour {
 
     private IEnumerator DieTemporarily() {
         Destroy(GetComponent<Rigidbody2D>());
-        collider.enabled = false;
+        enemyCollider.enabled = false;
         GetComponent<SpriteRenderer>().color = new Color(1f,1f,1f,.3f);
         yield return new WaitForSeconds(deathDuration);
         gameObject.AddComponent<Rigidbody2D>();
-        collider.enabled = true;
+        enemyCollider.enabled = true;
         GetComponent<SpriteRenderer>().color = new Color(1f,1f,1f,1f);
     }
 

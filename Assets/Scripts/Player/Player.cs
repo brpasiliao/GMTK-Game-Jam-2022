@@ -13,11 +13,15 @@ public class Player : MonoBehaviour {
     protected float currentSpeed;
     protected float currentJump;
 
+    public float hurtSpeed = 5;
+    public float hurtJump = 20;
+
     private Vector2 lastGrounded;
     protected bool isGrounded = true;
 
     protected int facing = 1;
     protected static bool isHit = false;
+    protected bool isBoosted = false;
     protected bool isSafe = false;
     public float safeTime = 1f;
     private float safeTimer = 0f;
@@ -62,8 +66,7 @@ public class Player : MonoBehaviour {
             moveVelocity = currentSpeed;
         }
 
-
-        if (isHit) moveVelocity = -5 * facing;
+        if (isHit) moveVelocity = -hurtSpeed * facing;
     }
 
     protected virtual void Special() {}
@@ -112,7 +115,7 @@ public class Player : MonoBehaviour {
         isSafe = true;
 
         if (!isHit) {
-            rb.velocity = new Vector2(rb.velocity.x, 20);
+            rb.velocity = new Vector2(rb.velocity.x, hurtJump);
             ResetValues();
             isHit = true;
             ChangeCharacter(enemy.form);

@@ -1055,7 +1055,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4703949600fdb477fb3d69e830448618, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyCollider: {fileID: 0}
   form: 
+  deathDuration: 0
   canWalk: 0
   speed: 0.1
   pause: 0
@@ -1416,6 +1418,11 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!58 &1153478071 stripped
+CircleCollider2D:
+  m_CorrespondingSourceObject: {fileID: 8918739221517646861, guid: 90614d39ad752436ca8361cd7f02a971, type: 3}
+  m_PrefabInstance: {fileID: 8918739222095477513}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1274367062
 GameObject:
   m_ObjectHideFlags: 0
@@ -1914,6 +1921,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 144636253}
     m_Modifications:
+    - target: {fileID: 1263235877440194156, guid: ac51e87c81c4b154ab5d9b94f75c8173, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5184148286911704143, guid: ac51e87c81c4b154ab5d9b94f75c8173, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5184148286911704143, guid: ac51e87c81c4b154ab5d9b94f75c8173, type: 3}
+      propertyPath: enemyBoost
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5184148286911704143, guid: ac51e87c81c4b154ab5d9b94f75c8173, type: 3}
+      propertyPath: speedBoost
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8542444690092807665, guid: ac51e87c81c4b154ab5d9b94f75c8173, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -2438,10 +2461,6 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8918739221517646862, guid: 90614d39ad752436ca8361cd7f02a971, type: 3}
-      propertyPath: form
-      value: rabbit
-      objectReference: {fileID: 0}
-    - target: {fileID: 8918739221517646862, guid: 90614d39ad752436ca8361cd7f02a971, type: 3}
       propertyPath: pause
       value: 3
       objectReference: {fileID: 0}
@@ -2457,6 +2476,10 @@ PrefabInstance:
       propertyPath: rightEnd.x
       value: -3.78
       objectReference: {fileID: 0}
+    - target: {fileID: 8918739221517646862, guid: 90614d39ad752436ca8361cd7f02a971, type: 3}
+      propertyPath: enemyCollider
+      value: 
+      objectReference: {fileID: 1153478071}
     - target: {fileID: 8918739221517646863, guid: 90614d39ad752436ca8361cd7f02a971, type: 3}
       propertyPath: m_RootOrder
       value: 3
