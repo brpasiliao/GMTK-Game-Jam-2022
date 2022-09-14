@@ -6,6 +6,7 @@ public class Turtle : Player {
     public float speedDash;
     public float dashTime;
     float dashTimer = 0;
+    public float speedBoost;
     
     public float slowDown; // natural slowdown
     public float slowDown2; // forced slowdown
@@ -18,9 +19,6 @@ public class Turtle : Player {
     private bool isSliding = false;
     private bool isCharging = false;
     private int direction = 1;
-
-    public bool enemyBoost;
-    public float speedBoost;
 
     // public AudioSource sfx;
 

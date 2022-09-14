@@ -4,6 +4,7 @@ using System.Collections;
 public class Rabbit : Player {
     public float speed;
     public float jump;
+    public float jumpBoost;
 
     public float chargeTime;
     float chargeTimer = 0;
@@ -12,7 +13,7 @@ public class Rabbit : Player {
 
     private void OnEnable() {
         currentSpeed = speed;
-        currentJump = 0;
+        currentJump = jump;
     }
 
     protected override void Special() {
@@ -31,17 +32,21 @@ public class Rabbit : Player {
                     currentJump = jump;
 
                     // sfx.Play();
-                }
+                } 
+                else currentJump = 0;
 
                 rb.velocity = new Vector2 (rb.velocity.x, currentJump);
-                currentJump = 0;
             }
         }
     }
 
     protected override void EnemyContact(Enemy enemy) {
         if (this.enabled) {
-            if (rb.velocity.y < 0f) enemy.CallDieTemporarily();
+            if (rb.velocity.y < 0f) {
+                enemy.CallDieTemporarily();
+                currentJump += jumpBoost;
+                rb.velocity = new Vector2 (rb.velocity.x, currentJump);
+            }
             else if (!isSafe) GetHurt(enemy);
         }
     }

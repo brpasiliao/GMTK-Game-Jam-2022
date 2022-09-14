@@ -13,6 +13,8 @@ public class Player : MonoBehaviour {
     protected float currentSpeed;
     protected float currentJump;
 
+    public bool enemyBoost;
+
     public float hurtSpeed = 5;
     public float hurtJump = 20;
 
