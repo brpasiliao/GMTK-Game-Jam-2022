@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4703949600fdb477fb3d69e830448618, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collider: {fileID: 3574909878837288782}
+  enemyCollider: {fileID: 3574909878837288782}
   form: turtle
   deathDuration: 1
   canWalk: 0

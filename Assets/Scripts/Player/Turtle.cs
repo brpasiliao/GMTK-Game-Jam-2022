@@ -27,6 +27,8 @@ public class Turtle : Player {
     private void OnEnable() {
         currentSpeed = speed;
         currentJump = 0;
+
+        GetComponent<Animator>().Play("Turtle_Idle");
     }
 
     protected override void Move() {

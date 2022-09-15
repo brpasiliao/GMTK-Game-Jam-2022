@@ -17,6 +17,8 @@ public class Owl : Player {
         currentSpeed = speed;
         currentJump = jump;
         currentFlaps = flaps;
+
+        GetComponent<Animator>().Play("Owl_Idle");
     }
 
     protected override void Special() {

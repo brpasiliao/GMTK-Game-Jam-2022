@@ -14,6 +14,8 @@ public class Rabbit : Player {
     private void OnEnable() {
         currentSpeed = speed;
         currentJump = jump;
+
+        GetComponent<Animator>().Play("Rabbit_Idle");
     }
 
     protected override void Special() {
