@@ -8,6 +8,9 @@ public class Rabbit : Player {
 
     public float chargeTime;
     float chargeTimer = 0;
+    float PrevPos;
+    float NewPos;
+    float ObjVelocity;
 
     // public AudioSource sfx;
 
@@ -16,6 +19,20 @@ public class Rabbit : Player {
         currentJump = jump;
 
         GetComponent<Animator>().Play("Rabbit_Idle");
+    }
+
+    private void Start()
+    {
+        PrevPos = transform.position.y;
+        NewPos = transform.position.y;
+
+    }
+
+    private void FixedUpdate()
+    {
+        NewPos = transform.position.y;
+        ObjVelocity = (NewPos - PrevPos);
+        PrevPos = NewPos;  
     }
 
     protected override void Special() {
@@ -43,12 +60,16 @@ public class Rabbit : Player {
 
     protected override void EnemyContact(Enemy enemy) {
         if (this.enabled) {
-            if (rb.velocity.y < 0f) {
+            if (ObjVelocity < 0f)
+            {
                 enemy.CallDieTemporarily();
                 currentJump += jumpBoost;
-                rb.velocity = new Vector2 (rb.velocity.x, currentJump);
+                rb.velocity = new Vector2(rb.velocity.x, currentJump);
             }
-            else if (!isSafe) GetHurt(enemy);
+            else if (!isSafe)
+            {
+                GetHurt(enemy);
+            }
         }
     }
 }

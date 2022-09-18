@@ -31,11 +31,11 @@ public class Enemy : MonoBehaviour {
     }
 
     private IEnumerator DieTemporarily() {
-        Destroy(GetComponent<Rigidbody2D>());
+        //Destroy(GetComponent<Rigidbody2D>());
         enemyCollider.enabled = false;
         GetComponent<SpriteRenderer>().color = new Color(1f,1f,1f,.3f);
         yield return new WaitForSeconds(deathDuration);
-        gameObject.AddComponent<Rigidbody2D>();
+       //gameObject.AddComponent<Rigidbody2D>();
         enemyCollider.enabled = true;
         GetComponent<SpriteRenderer>().color = new Color(1f,1f,1f,1f);
     }
