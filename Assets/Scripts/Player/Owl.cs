@@ -50,9 +50,10 @@ public class Owl : Player {
 
     protected override void EnemyContact(Enemy enemy) {
         if (this.enabled) {
-            if (currentFlaps > 0 && Input.GetKeyDown(KeyCode.Space)) {
+            if (currentFlaps > 0 && Input.GetKey(KeyCode.Space)) {
                 enemy.CallDieTemporarily();
                 currentFlaps = flaps;
+                rb.velocity = new Vector2(rb.velocity.x, currentJump);
             }
             else if (!isSafe) GetHurt(enemy);
         }
