@@ -55,7 +55,6 @@ public class Player : MonoBehaviour {
         rb.gravityScale = currentGravity;
 
         PlayAnimations();
-        CheckSafe();
 
         DevSecret();
     }
@@ -81,8 +80,6 @@ public class Player : MonoBehaviour {
         if (rb.velocity.y > 0) currentGravity = gravityUp;
         if (rb.velocity.y < 0) currentGravity = gravityDown;
     }
-
-
 
 
 
@@ -125,7 +122,7 @@ public class Player : MonoBehaviour {
     protected virtual void ResetValues() {}
 
     protected void GetHurt(Enemy enemy) {
-        isSafe = true;
+        StartCoroutine("BeSafe");
 
         if (!isHit) {
             rb.velocity = new Vector2(rb.velocity.x, hurtJump);
@@ -135,15 +132,10 @@ public class Player : MonoBehaviour {
         }
     }
 
-    void CheckSafe() {
-        if (isSafe) {
-            if (safeTimer < safeTime) 
-                safeTimer += Time.deltaTime;
-            else {
-                safeTimer = 0f;
-                isSafe = false;
-            }
-        }
+    IEnumerator BeSafe() {
+        isSafe = true;
+        yield return new WaitForSeconds(safeTime);
+        isSafe = false;
     }
 
     void DevSecret() {

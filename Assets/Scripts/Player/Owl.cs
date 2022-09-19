@@ -51,7 +51,7 @@ public class Owl : Player {
     protected override void EnemyContact(Enemy enemy) {
         if (this.enabled) {
             if (currentFlaps > 0 && Input.GetKey(KeyCode.Space)) {
-                enemy.CallDieTemporarily();
+                enemy.StartCoroutine("DieTemporarily");
                 currentFlaps = flaps;
                 rb.velocity = new Vector2(rb.velocity.x, currentJump);
             }

@@ -140,7 +140,8 @@ public class Turtle : Player {
     protected override void EnemyContact(Enemy enemy) {
         if (this.enabled) {
             if (isDashing || isSliding) {
-                enemy.CallDieTemporarily();
+                // enemy.CallDieTemporarily();
+                enemy.StartCoroutine("DieTemporarily");
                 if (enemyBoost) isBoosted = true;
             }
             else if (!isSafe) GetHurt(enemy);

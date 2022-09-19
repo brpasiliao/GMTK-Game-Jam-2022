@@ -21,15 +21,12 @@ public class Rabbit : Player {
         GetComponent<Animator>().Play("Rabbit_Idle");
     }
 
-    private void Start()
-    {
+    private void Start() {
         PrevPos = transform.position.y;
         NewPos = transform.position.y;
-
     }
 
-    private void FixedUpdate()
-    {
+    private void FixedUpdate() {
         NewPos = transform.position.y;
         ObjVelocity = (NewPos - PrevPos);
         PrevPos = NewPos;  
@@ -60,16 +57,12 @@ public class Rabbit : Player {
 
     protected override void EnemyContact(Enemy enemy) {
         if (this.enabled) {
-            if (ObjVelocity < 0f)
-            {
-                enemy.CallDieTemporarily();
+            if (ObjVelocity < 0f) {
+                enemy.StartCoroutine("DieTemporarily");
                 currentJump += jumpBoost;
                 rb.velocity = new Vector2(rb.velocity.x, currentJump);
             }
-            else if (!isSafe)
-            {
-                GetHurt(enemy);
-            }
+            else if (!isSafe) GetHurt(enemy);
         }
     }
 }
