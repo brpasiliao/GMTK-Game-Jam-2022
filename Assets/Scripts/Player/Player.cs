@@ -27,7 +27,6 @@ public class Player : MonoBehaviour {
     protected static bool isHit = false;
     protected bool isSafe = false;
     public float safeTime = 1f;
-    private float safeTimer = 0f;
 
     private void OnEnable() {
         Narration.Narrate += ChangeCharacter;
@@ -67,7 +66,7 @@ public class Player : MonoBehaviour {
         }
         if (Input.GetKey (KeyCode.RightArrow) || Input.GetKey (KeyCode.D)) {
             transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
-            if (!isHit)facing = 1;
+            if (!isHit) facing = 1;
             moveVelocity = currentSpeed;
         }
 
@@ -96,7 +95,7 @@ public class Player : MonoBehaviour {
             EnemyContact(collision.gameObject.GetComponent<Enemy>());
     }
 
-    void OnCollisionExit2D(Collision2D collision) {
+    protected virtual void OnCollisionExit2D(Collision2D collision) {
         if (collision.gameObject.tag == "Ground")
             isGrounded = false;
     }

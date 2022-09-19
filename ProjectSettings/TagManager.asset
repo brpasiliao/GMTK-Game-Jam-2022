@@ -9,6 +9,9 @@ TagManager:
   - Slope
   - Wall
   - Music
+  - Thirty
+  - Forty Five
+  - Ninety
   layers:
   - Default
   - TransparentFX

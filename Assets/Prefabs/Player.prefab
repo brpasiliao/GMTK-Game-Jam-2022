@@ -272,12 +272,12 @@ MonoBehaviour:
   safeTime: 1
   speed: 3
   speedDash: 40
-  dashTime: 0.41
+  dashTime: 0.00001
   speedBoost: 20
   slowDown: 0.1
   slowDown2: 1.1
   chargeTime: 0
-  coolDown: 1
+  coolDown: 0
   enemyBoost: 1
 --- !u!114 &3144952208285291142
 MonoBehaviour:

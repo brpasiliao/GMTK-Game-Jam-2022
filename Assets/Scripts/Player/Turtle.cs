@@ -137,6 +137,23 @@ public class Turtle : Player {
         }
     }
 
+    protected override void OnCollisionExit2D(Collision2D collision) {
+        if (this.enabled) {
+            base.OnCollisionExit2D(collision);
+
+            if (rb.velocity.y > 0f) {
+                if (collision.gameObject.tag == "Thirty") 
+                    rb.velocity = new Vector2 (rb.velocity.x, rb.velocity.x * direction * 0.58f); // tan(30)
+                if (collision.gameObject.tag == "Forty Five") 
+                    rb.velocity = new Vector2 (rb.velocity.x, rb.velocity.x * direction); // tan(45)
+                if (collision.gameObject.tag == "Ninety") {
+                    rb.velocity = new Vector2 (0, rb.velocity.x * direction);
+                    currentSpeed = 0;
+                }
+            }
+        }
+    }
+
     protected override void EnemyContact(Enemy enemy) {
         if (this.enabled) {
             if (isDashing || isSliding) {
