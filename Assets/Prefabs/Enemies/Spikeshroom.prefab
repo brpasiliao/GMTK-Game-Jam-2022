@@ -9,12 +9,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8469272871137080540}
+  - component: {fileID: 6519998594544973401}
   - component: {fileID: 8469272871137080543}
   - component: {fileID: 8469272871137080542}
   - component: {fileID: 8469272871137080545}
   m_Layer: 0
   m_Name: Spikeshroom
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27,13 +28,34 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8469272871137080544}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.15, y: -7.04, z: 1.834643}
+  m_LocalPosition: {x: 0, y: 0, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6519998594544973401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8469272871137080544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4703949600fdb477fb3d69e830448618, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyCollider: {fileID: 8469272871137080543}
+  form: turtle
+  deathDuration: 1
+  canWalk: 0
+  speed: 0
+  pause: 0
+  rightEnd: {x: 0, y: 0}
+  leftEnd: {x: 0, y: 0}
+  goingToRight: 1
 --- !u!70 &8469272871137080543
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -47,8 +69,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -1.0206825, y: -0.05019903}
-  m_Size: {x: 1.4370921, y: 3.3780832}
+  m_Offset: {x: -0.58179903, y: 0.022947788}
+  m_Size: {x: 0.5593252, y: 1.6469336}
   m_Direction: 0
 --- !u!212 &8469272871137080542
 SpriteRenderer:

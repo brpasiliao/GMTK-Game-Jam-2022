@@ -13,14 +13,20 @@ public class Player : MonoBehaviour {
     protected float currentSpeed;
     protected float currentJump;
 
+    public float gravityUp = 10;
+    public float gravityDown = 10;
+    protected float currentGravity;
+
+    public float hurtSpeed = 5;
+    public float hurtJump = 20;
+
     private Vector2 lastGrounded;
     protected bool isGrounded = true;
 
     protected int facing = 1;
-    protected bool isHit = false;
-    private bool isSafe = false;
+    protected static bool isHit = false;
+    protected bool isSafe = false;
     public float safeTime = 1f;
-    private float safeTimer = 0f;
 
     private void OnEnable() {
         Narration.Narrate += ChangeCharacter;
@@ -44,8 +50,10 @@ public class Player : MonoBehaviour {
         Move();
         rb.velocity = new Vector2(moveVelocity, rb.velocity.y);
 
+        CheckGravity();
+        rb.gravityScale = currentGravity;
+
         PlayAnimations();
-        CheckSafe();
 
         DevSecret();
     }
@@ -53,19 +61,24 @@ public class Player : MonoBehaviour {
     protected virtual void Move() {
         if (Input.GetKey (KeyCode.LeftArrow) || Input.GetKey (KeyCode.A)) {
             transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
-            facing = -1;
+            if (!isHit) facing = -1;
             moveVelocity = -currentSpeed;
         }
         if (Input.GetKey (KeyCode.RightArrow) || Input.GetKey (KeyCode.D)) {
             transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
-            facing = 1;
+            if (!isHit) facing = 1;
             moveVelocity = currentSpeed;
         }
 
-        if (isHit) moveVelocity = -5 * facing;
+        if (isHit) moveVelocity = -hurtSpeed * facing;
     }
 
     protected virtual void Special() {}
+
+    protected virtual void CheckGravity() {
+        if (rb.velocity.y > 0) currentGravity = gravityUp;
+        if (rb.velocity.y < 0) currentGravity = gravityDown;
+    }
 
 
 
@@ -79,10 +92,10 @@ public class Player : MonoBehaviour {
         }
 
         if (collision.gameObject.tag == "Enemy")
-            EnemyContact(collision.gameObject);
+            EnemyContact(collision.gameObject.GetComponent<Enemy>());
     }
 
-    void OnCollisionExit2D(Collision2D collision) {
+    protected virtual void OnCollisionExit2D(Collision2D collision) {
         if (collision.gameObject.tag == "Ground")
             isGrounded = false;
     }
@@ -103,32 +116,25 @@ public class Player : MonoBehaviour {
         }
     }
 
-    protected virtual void EnemyContact(GameObject enemy) {}
+    protected virtual void EnemyContact(Enemy enemy) {}
 
     protected virtual void ResetValues() {}
 
-    protected void GetHurt(GameObject enemy) {
-        Debug.Log("got hurt");
-        isSafe = true;
+    protected void GetHurt(Enemy enemy) {
+        StartCoroutine("BeSafe");
 
         if (!isHit) {
-            rb.velocity = new Vector2(rb.velocity.x, 20);
+            rb.velocity = new Vector2(rb.velocity.x, hurtJump);
             ResetValues();
             isHit = true;
-
-            // ChangeCharacter(enemy.GetComponent<Enemy>().form);
+            ChangeCharacter(enemy.form);
         }
     }
 
-    void CheckSafe() {
-        if (isSafe) {
-            if (safeTimer < safeTime) 
-                safeTimer += Time.deltaTime;
-            else {
-                safeTimer = 0f;
-                isSafe = false;
-            }
-        }
+    IEnumerator BeSafe() {
+        isSafe = true;
+        yield return new WaitForSeconds(safeTime);
+        isSafe = false;
     }
 
     void DevSecret() {

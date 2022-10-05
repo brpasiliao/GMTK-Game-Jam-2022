@@ -6,33 +6,36 @@ public class Owl : Player {
     public float speedFlight;
     public float jump;
     public float jumpFlight;
-    public float fall;
-    public float fallFlight;
+    public float gravUp;
+    public float gravUpFlight;
     public int flaps = 4;
+    private int currentFlaps;
 
     // public AudioSource sfx;
 
     private void OnEnable() {
         currentSpeed = speed;
         currentJump = jump;
+        currentFlaps = flaps;
+
+        GetComponent<Animator>().Play("Owl_Idle");
     }
 
     protected override void Special() {
-        // Debug.Log("owl special");
         if (Input.GetKeyDown(KeyCode.Space)) {
-            if (flaps > 0 || isGrounded) {
+            if (currentFlaps > 0 || isGrounded) {
                 // sfx.Play();
 
                 if (isGrounded) {
                     currentSpeed = speed;
                     currentJump = jump;
-                    rb.gravityScale = fall;
-                    flaps = 4;
+                    gravityUp = gravUp;
+                    currentFlaps = flaps;
                 } else {
                     currentSpeed = speedFlight;
                     currentJump = jumpFlight;
-                    rb.gravityScale = fallFlight;
-                    flaps--;
+                    gravityUp = gravUpFlight;
+                    currentFlaps--;
                 }
 
                 rb.velocity = new Vector2 (rb.velocity.x, currentJump);
@@ -45,11 +48,14 @@ public class Owl : Player {
         //     GetComponent<Animator>().Play("Wing_Idle");
     }
 
-    protected override void EnemyContact(GameObject enemy) {
+    protected override void EnemyContact(Enemy enemy) {
         if (this.enabled) {
-            if (flaps > 0 && Input.GetKeyDown(KeyCode.Space))
-                enemy.SetActive(false);
-            else GetHurt(enemy);
+            if (currentFlaps > 0 && Input.GetKey(KeyCode.Space)) {
+                enemy.StartCoroutine("DieTemporarily");
+                currentFlaps = flaps;
+                rb.velocity = new Vector2(rb.velocity.x, currentJump);
+            }
+            else if (!isSafe) GetHurt(enemy);
         }
     }
 }

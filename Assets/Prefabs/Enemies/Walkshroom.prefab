@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7811063242349711460}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.24, y: -7.04, z: 1.834643}
+  m_LocalPosition: {x: 0, y: 0, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -48,11 +48,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4703949600fdb477fb3d69e830448618, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyCollider: {fileID: 0}
   form: owl
+  deathDuration: 0
   canWalk: 0
   speed: 0
   pause: 0
-  timer: 0
   rightEnd: {x: 0, y: 0}
   leftEnd: {x: 0, y: 0}
   goingToRight: 1
@@ -69,8 +70,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.47, y: 0}
-  m_Size: {x: 2.05, y: 3.89}
+  m_Offset: {x: 0.24684298, y: -0.105015755}
+  m_Size: {x: 1.4986708, y: 2.2360115}
   m_Direction: 0
 --- !u!212 &7811063242349711462
 SpriteRenderer:

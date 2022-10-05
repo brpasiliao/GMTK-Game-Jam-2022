@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3574909878837288771}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.15, y: -0.044055253, z: 1.834643}
+  m_LocalPosition: {x: 0, y: 0, z: 1.834643}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -48,13 +48,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4703949600fdb477fb3d69e830448618, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  form: turtle
-  canWalk: 0
-  speed: 0
+  enemyCollider: {fileID: 3574909878837288782}
+  form: rabbit
+  deathDuration: 1
+  canWalk: 1
+  speed: 0.02
   pause: 0
-  timer: 0
-  rightEnd: {x: 0, y: 0}
-  leftEnd: {x: 0, y: 0}
+  rightEnd: {x: 24, y: 0}
+  leftEnd: {x: 7, y: 0}
   goingToRight: 1
 --- !u!70 &3574909878837288782
 CapsuleCollider2D:
@@ -69,8 +70,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.016731257, y: 0.06693078}
-  m_Size: {x: 5.319014, y: 3.7461548}
+  m_Offset: {x: -0.054557566, y: 0.0211382}
+  m_Size: {x: 2.8913958, y: 2.0671504}
   m_Direction: 1
 --- !u!212 &3574909878837288769
 SpriteRenderer:
@@ -112,7 +113,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 1141188447, guid: b30d4f083e5f348498dfba5c550c1358, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
