@@ -37967,8 +37967,16 @@ PrefabInstance:
       value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1263235877440194156, guid: ac51e87c81c4b154ab5d9b94f75c8173, type: 3}
+      propertyPath: jump
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 1263235877440194156, guid: ac51e87c81c4b154ab5d9b94f75c8173, type: 3}
+      propertyPath: speed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1263235877440194156, guid: ac51e87c81c4b154ab5d9b94f75c8173, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2256973660511910471, guid: ac51e87c81c4b154ab5d9b94f75c8173, type: 3}
       propertyPath: speed
@@ -37979,7 +37987,19 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5184148286911704143, guid: ac51e87c81c4b154ab5d9b94f75c8173, type: 3}
+      propertyPath: speed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5184148286911704143, guid: ac51e87c81c4b154ab5d9b94f75c8173, type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5184148286911704143, guid: ac51e87c81c4b154ab5d9b94f75c8173, type: 3}
+      propertyPath: speedDash
+      value: 55
+      objectReference: {fileID: 0}
+    - target: {fileID: 5184148286911704143, guid: ac51e87c81c4b154ab5d9b94f75c8173, type: 3}
+      propertyPath: enemyBoost
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6557719398234478642, guid: ac51e87c81c4b154ab5d9b94f75c8173, type: 3}
@@ -38591,7 +38611,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7781754, y: 1}
+    m_SensorSize: {x: 1.7771204, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
